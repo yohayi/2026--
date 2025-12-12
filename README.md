@@ -34,7 +34,7 @@
 ## 快速开始
 
 ### 在线浏览
-访问：[https://[你的用户名].github.io/[仓库名]/](https://[你的用户名].github.io/[仓库名]/)
+访问：[https://[你的用户名].github.io/[仓库名]/](https://yohayi.github.io/2026--/#accessibility)
 
 ### 本地运行
 1. 克隆仓库：
