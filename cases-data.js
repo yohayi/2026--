@@ -1,4 +1,3 @@
-
 // cases-data.js - 教育案例数据库
 // 使用方法：只需在此文件中添加/修改案例对象，网站会自动更新
 
@@ -10,12 +9,11 @@ const educationCases = {
         subtitle: "法律化、标准化、行业深度参与的校企合作模式",
         period: "持续运行中（2020-2024年为重点观察期）",
         location: "德国全国性体系，以柏林、巴伐利亚等州为例",
-        icon: "industry", // Font Awesome图标名
-        color: "#1a56db", // 主色调
+        icon: "industry",
+        color: "#1a56db",
         category: "职业教育",
         tags: ["职业教育", "校企合作", "法律保障", "德国"],
         
-        // 数据统计
         stats: [
             { value: "50万", label: "年学徒人数", icon: "users" },
             { value: "40万", label: "参与企业", icon: "building" },
@@ -23,7 +21,6 @@ const educationCases = {
             { value: "2/3", label: "毕业生留用率", icon: "user-check" }
         ],
         
-        // 核心机制（对应主建议方向）
         mechanisms: [
             {
                 title: "法律与框架保障",
@@ -47,7 +44,6 @@ const educationCases = {
             }
         ],
         
-        // 成效与挑战
         outcomes: {
             positive: [
                 "青年失业率长期低于欧盟平均水平",
@@ -61,30 +57,26 @@ const educationCases = {
             ]
         },
         
-        // 数据参考
         dataReferences: [
             { label: "青年失业率", value: "5.2%", year: "2023", source: "德国联邦统计局" },
             { label: "企业满意度", value: "87%", year: "2024", source: "德国工商业联合会" }
         ],
         
-        // 对本建议的启示
         insights: [
             "证明了由法律保障、行业深度参与、理论实践紧密结合的校企合作模式，是解决'学校-社会'衔接的有效路径",
             "展示了标准化培训体系对提升职业教育质量和社会认可度的重要性",
             "为我国的'产教融合'提供了可借鉴的制度设计范例"
         ],
         
-        // 相关资源链接
         resources: [
             { type: "报告", title: "《德国职业教育2024年度报告》", url: "#" },
             { type: "法规", title: "《德国职业教育法》全文", url: "#" },
             { type: "案例", title: "巴伐利亚州双元制实施案例", url: "#" }
         ],
         
-        // 元数据
         lastUpdated: "2024-12-01",
         source: "德国联邦教育与研究部，2024",
-        status: "verified" // verified | ongoing | historical
+        status: "verified"
     },
     
     "shanghai-pbl-exploration": {
@@ -159,8 +151,6 @@ const educationCases = {
         status: "ongoing"
     },
     
-  
-    
     "finland-phenomenon-learning": {
         id: "finland-phenomenon-learning",
         title: "芬兰'现象教学'跨学科整合实践",
@@ -233,7 +223,6 @@ const educationCases = {
         status: "verified"
     },
     
-    // 新加坡案例模板
     "singapore-teach-less-learn-more": {
         id: "singapore-teach-less-learn-more",
         title: "新加坡'少教多学'与教育生态重构",
@@ -306,7 +295,6 @@ const educationCases = {
         status: "ongoing"
     },
     
-    // 日本案例模板
     "japan-specified-skills-visa": {
         id: "japan-specified-skills-visa",
         title: "日本'特定技能'签证与职业教育国际化",
@@ -378,50 +366,7 @@ const educationCases = {
         source: "日本厚生劳动省，2024",
         status: "ongoing"
     }
-},
-
-"your-case-id": {  // 使用英文短横线格式
-    id: "your-case-id",
-    title: "案例标题",
-    subtitle: "副标题",
-    period: "时间范围",
-    location: "实施地点",
-    icon: "图标名", // 从Font Awesome选择
-    color: "#颜色代码",
-    category: "案例类别",
-    tags: ["标签1", "标签2"],
-    
-    stats: [  // 数据统计
-        { value: "数值", label: "标签", icon: "图标" }
-    ],
-    
-    mechanisms: [  // 核心机制
-        {
-            title: "机制标题",
-            description: "详细说明",
-            relevance: "对应主建议方向"
-        }
-    ],
-    
-    outcomes: {  // 成效与挑战
-        positive: ["成效1", "成效2"],
-        challenges: ["挑战1", "挑战2"]
-    },
-    
-    dataReferences: [  // 数据参考
-        { label: "指标", value: "数值", year: "年份", source: "来源" }
-    ],
-    
-    insights: ["启示1", "启示2"],  // 对本建议的启示
-    
-    resources: [  // 相关资源
-        { type: "报告/法规/案例", title: "资源标题", url: "#" }
-    ],
-    
-    lastUpdated: "2024-01-01",
-    source: "数据来源",
-    status: "ongoing" // ongoing | verified | historical
-}    
+};
 
 // 案例分类索引
 const caseCategories = {
