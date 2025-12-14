@@ -826,3 +826,67 @@ function init() {
     // 页面加载完成后初始化
     window.addEventListener('load', init);
 });
+// 检查并初始化案例系统
+function checkAndInitCases() {
+    console.log('开始检查案例系统...');
+    
+    if (typeof educationCases === 'undefined') {
+        console.error('❌ educationCases 未定义！请检查 cases-data.js 是否已加载');
+        return;
+    }
+    
+    console.log(`✅ 案例数据已加载，共 ${Object.keys(educationCases).length} 个案例`);
+    
+    // 找到案例容器
+    const casesSection = document.querySelector('.cases-section');
+    if (!casesSection) {
+        console.error('❌ 找不到 .cases-section 元素');
+        return;
+    }
+    
+    console.log('✅ 找到案例容器');
+    
+    // 清空并重新渲染
+    const tabsContainer = casesSection.querySelector('.tab-content, .cases-tabs, #cases-container');
+    if (tabsContainer) {
+        console.log('清空现有案例内容...');
+        tabsContainer.innerHTML = '';
+        
+        // 渲染所有案例
+        Object.values(educationCases).forEach(caseData => {
+            const caseHTML = `
+                <div class="case-card">
+                    <h3>${caseData.title}</h3>
+                    <p class="case-subtitle">${caseData.subtitle}</p>
+                    <div class="case-meta">
+                        <span><i class="fas fa-calendar"></i> ${caseData.period}</span>
+                        <span><i class="fas fa-map-marker"></i> ${caseData.location}</span>
+                    </div>
+                    <div class="case-stats">
+                        ${caseData.stats.map(stat => `
+                            <div class="case-stat">
+                                <div class="stat-value">${stat.value}</div>
+                                <div class="stat-label">${stat.label}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="case-details">
+                        <h4>核心机制：</h4>
+                        ${caseData.mechanisms.map(mech => `
+                            <div class="mechanism">
+                                <strong>${mech.title}:</strong> ${mech.description}
+                                <div class="relevance">${mech.relevance}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            tabsContainer.innerHTML += caseHTML;
+        });
+        
+        console.log(`✅ 成功渲染 ${Object.keys(educationCases).length} 个案例`);
+    }
+}
+
+// 页面加载后执行
+setTimeout(checkAndInitCases, 500);
