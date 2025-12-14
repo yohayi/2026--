@@ -4,63 +4,323 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>知行教育研究课题组 - 教育改革与创新研究中心</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- 字体和图标 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg">
     
+    <!-- 主样式 -->
     <style>
-        /* === 新增：数据报告卡片样式 === */
+        :root {
+            --primary-color: #1a56db;
+            --secondary-color: #0e4aa3;
+            --accent-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo-icon {
+            font-size: 3.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .logo-text h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-text h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .language-switch a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .language-switch a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-switch a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+            background-color: rgba(26, 86, 219, 0.1);
+        }
+
+        /* 主要内容区 */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .section-icon {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        /* 英雄区域 */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(26, 86, 219, 0.1), rgba(245, 158, 11, 0.1));
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+        }
+
+        .report-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .report-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* 卡片样式 */
+        .report-card,
+        .research-card,
+        .data-card,
+        .contact-card {
+            background-color: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 2rem;
+        }
+
+        .report-card:hover,
+        .research-card:hover,
+        .data-card:hover,
+        .contact-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        /* 研究领域网格 */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .research-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            cursor: pointer; /* 添加手型光标 */
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .research-card h4 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        /* 数据可视化 */
+        .data-visualization {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .data-item {
+            text-align: center;
+        }
+
+        .data-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .data-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .data-description {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 0;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* 数据报告卡片样式 */
         .data-report-card {
             display: flex;
             align-items: flex-start;
             gap: 1.5rem;
-            background: #ffffff;
-            border-radius: 12px;
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
             padding: 1.5rem;
             margin-top: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border-left: 4px solid #f59e0b;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-color);
         }
-        
-        .data-report-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        
+
         .report-card-icon {
             font-size: 2.5rem;
-            color: #f59e0b;
+            color: var(--accent-color);
             padding: 1rem;
             background: rgba(245, 158, 11, 0.1);
             border-radius: 12px;
             flex-shrink: 0;
         }
-        
+
         .report-card-content {
             flex: 1;
         }
-        
+
         .report-card-content h4 {
             font-size: 1.2rem;
-            color: #1a56db;
+            color: var(--primary-color);
             margin-bottom: 0.75rem;
             font-family: 'Noto Serif SC', serif;
         }
-        
+
         .report-card-content p {
-            color: #6b7280;
+            color: var(--text-secondary);
             margin-bottom: 1.25rem;
             line-height: 1.6;
         }
-        
+
         .report-card-actions {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
-        
+
         .card-btn {
             padding: 0.75rem 1.5rem;
             border-radius: 8px;
@@ -69,36 +329,369 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
             font-size: 0.95rem;
         }
-        
+
         .card-btn-primary {
-            background: #1a56db;
+            background: var(--primary-color);
             color: white;
         }
-        
+
         .card-btn-primary:hover {
-            background: #0e4aa3;
+            background: var(--secondary-color);
             transform: translateY(-2px);
             box-shadow: 0 4px 6px -1px rgba(14, 74, 163, 0.2);
         }
-        
+
         .card-btn-secondary {
             background: #f3f4f6;
-            color: #1f2937;
+            color: var(--text-primary);
             border: 1px solid #e5e7eb;
         }
-        
+
         .card-btn-secondary:hover {
             background: #e5e7eb;
             transform: translateY(-2px);
         }
-        
-        /* 响应式调整 */
+
+        /* 联系信息 */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            width: 40px;
+        }
+
+        .contact-item h4 {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p,
+        .contact-item a {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* 页脚 */
+        .footer {
+            background-color: var(--text-primary);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-logo i {
+            font-size: 1.8rem;
+        }
+
+        .footer-info {
+            text-align: center;
+        }
+
+        .footer-info p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* ===== 动态内容弹窗样式 ===== */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            backdrop-filter: blur(3px);
+        }
+
+        .dynamic-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: modalAppear 0.3s ease-out;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -48%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .dynamic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+
+        .dynamic-header h3 {
+            margin: 0;
+            color: #1a56db;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: #1f2937;
+        }
+
+        .dynamic-body {
+            padding: 2rem;
+            overflow-y: auto;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .dynamic-body h2 {
+            color: #1a56db;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .dynamic-body h3 {
+            color: #374151;
+            margin-top: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .dynamic-body p {
+            margin-bottom: 1rem;
+        }
+
+        .dynamic-body ul, .dynamic-body ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dynamic-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #6b7280;
+        }
+
+        .loading .fa-spinner {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #1a56db;
+        }
+
+        .loading p {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+
+        .error i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #ef4444;
+        }
+
+        .error h4 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .back-hint {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f0f9ff;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+            font-size: 0.9rem;
+            color: #1e40af;
+        }
+
+        .back-hint i {
+            margin-right: 0.5rem;
+        }
+
+        /* 打印按钮样式 */
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .print-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 响应式设计 */
         @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .logo-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                flex: 1 0 auto;
+            }
+            
+            .nav-links a {
+                justify-content: center;
+                padding: 0.5rem;
+            }
+            
+            .report-title {
+                font-size: 1.6rem;
+            }
+            
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-visualization {
+                gap: 2rem;
+            }
+            
+            .data-number {
+                font-size: 2.8rem;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
             .data-report-card {
                 flex-direction: column;
                 align-items: center;
@@ -109,12 +702,38 @@
                 justify-content: center;
             }
             
-            .report-card-icon {
-                align-self: center;
+            .dynamic-container {
+                width: 95%;
+                max-height: 90vh;
+            }
+            
+            .dynamic-header {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .dynamic-body {
+                padding: 1.5rem;
             }
         }
-        
+
         @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .data-visualization {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .footer-content {
+                text-align: center;
+            }
+            
             .report-card-actions {
                 flex-direction: column;
                 width: 100%;
@@ -125,6 +744,8 @@
             }
         }
     </style>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
 </head>
 <body>
     <div class="container">
@@ -183,17 +804,18 @@
                     <h3>研究领域</h3>
                 </div>
                 <div class="research-grid">
-                    <div class="research-card">
+                    <!-- 注意：每个研究卡片都添加了 data-page 属性 -->
+                    <div class="research-card" data-page="research-edu-system.html">
                         <i class="fas fa-cogs card-icon"></i>
                         <h4>教育制度设计</h4>
                         <p>系统性教育政策研究与制度创新，探索适应新时代的教育治理体系。</p>
                     </div>
-                    <div class="research-card">
+                    <div class="research-card" data-page="research-interdisciplinary.html">
                         <i class="fas fa-book-open card-icon"></i>
                         <h4>跨学科课程开发</h4>
                         <p>整合STEM、人文社科与艺术教育，构建综合性课程体系与教学方法。</p>
                     </div>
-                    <div class="research-card">
+                    <div class="research-card" data-page="research-data-analysis.html">
                         <i class="fas fa-chart-line card-icon"></i>
                         <h4>教育数据分析</h4>
                         <p>基于大数据的教育评估与预测模型，支持科学决策与精准干预。</p>
@@ -223,7 +845,7 @@
                     </div>
                     <p class="data-description">调研覆盖全国主要教育区域，样本具有广泛代表性，为政策建议提供坚实的数据支撑。</p>
                     
-                    <!-- 新增：数据报告卡片链接 -->
+                    <!-- 数据报告卡片链接 -->
                     <div class="data-report-card">
                         <div class="report-card-icon">
                             <i class="fas fa-chart-bar"></i>
@@ -277,6 +899,20 @@
             </section>
         </main>
 
+        <!-- 动态内容弹窗容器 -->
+        <div id="dynamic-content-container" class="dynamic-container" style="display: none;">
+            <div class="dynamic-header">
+                <button id="close-dynamic-content" class="close-btn" aria-label="关闭">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h3 id="dynamic-title">内容详情</h3>
+            </div>
+            <div id="dynamic-content" class="dynamic-body">
+                <!-- 内容将通过JavaScript动态加载到这里 -->
+            </div>
+        </div>
+        <div id="overlay" class="overlay" style="display: none;"></div>
+
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-logo">
@@ -300,6 +936,301 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <!-- 内联JavaScript - 确保所有交互功能可用 -->
+    <script>
+        // 等待页面完全加载
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('知行教育研究课题组网站已加载');
+
+            // ========== 1. 平滑滚动功能 ==========
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // 只处理锚点链接 (#home, #research 等)
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        
+                        const targetId = href.substring(1);
+                        const targetSection = document.getElementById(targetId);
+                        
+                        if (targetSection) {
+                            // 更新导航激活状态
+                            navLinks.forEach(l => l.classList.remove('active'));
+                            this.classList.add('active');
+                            
+                            // 平滑滚动到目标区域
+                            window.scrollTo({
+                                top: targetSection.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                    // 如果是外链（如 data-dashboard.html），则正常跳转
+                });
+            });
+            
+            // 滚动时更新导航激活状态
+            window.addEventListener('scroll', function() {
+                let current = '';
+                const scrollPos = window.scrollY + 100;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // ========== 2. 动态内容加载功能 ==========
+            console.log('正在初始化动态内容加载功能...');
+            
+            // 获取动态内容所需的DOM元素
+            const dynamicContainer = document.getElementById('dynamic-content-container');
+            const dynamicTitle = document.getElementById('dynamic-title');
+            const dynamicContent = document.getElementById('dynamic-content');
+            const overlay = document.getElementById('overlay');
+            const closeBtn = document.getElementById('close-dynamic-content');
+            
+            // 检查必要元素是否存在
+            if (!dynamicContainer || !overlay) {
+                console.error('错误：动态内容容器或遮罩层未找到！');
+                return; // 如果基础元素缺失，则停止初始化此功能
+            }
+            
+            // 2.1 为所有具有 data-page 属性的卡片绑定点击事件
+            const interactiveCards = document.querySelectorAll('[data-page]');
+            console.log(`找到 ${interactiveCards.length} 个可交互卡片`);
+            
+            interactiveCards.forEach(card => {
+                card.style.cursor = 'pointer'; // 添加手型光标提示
+                card.addEventListener('click', function() {
+                    const pageUrl = this.getAttribute('data-page');
+                    const cardTitle = this.querySelector('h4').textContent;
+                    console.log(`点击卡片，加载: ${pageUrl}, 标题: ${cardTitle}`);
+                    loadDynamicContent(pageUrl, cardTitle);
+                });
+            });
+
+            // 2.2 加载动态内容的函数
+            function loadDynamicContent(url, title) {
+                console.log(`开始加载: ${url}`);
+                
+                // 显示加载状态
+                dynamicContent.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> 
+                        <p>正在加载「${title}」的详细内容...</p>
+                        <p class="loading-sub">请稍候</p>
+                    </div>
+                `;
+                
+                dynamicTitle.textContent = title;
+                dynamicContainer.style.display = 'block';
+                overlay.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+                
+                // 使用 Fetch API 获取子页面内容
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}: 无法加载 ${url}`);
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
+                        console.log(`成功获取 ${url} 的内容`);
+                        
+                        // 解析HTML，提取主要内容
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        
+                        // 尝试获取子页面的 <main> 或 <body> 内容
+                        let mainContent = doc.querySelector('main');
+                        if (!mainContent) {
+                            mainContent = doc.body;
+                        }
+                        
+                        if (mainContent && mainContent.innerHTML.trim().length > 0) {
+                            // 成功获取内容
+                            dynamicContent.innerHTML = mainContent.innerHTML;
+                            
+                            // 添加一个返回提示
+                            const backHint = document.createElement('div');
+                            backHint.className = 'back-hint';
+                            backHint.innerHTML = `<p><i class="fas fa-info-circle"></i> 点击弹窗外部或按ESC键可关闭此窗口</p>`;
+                            dynamicContent.appendChild(backHint);
+                            
+                        } else {
+                            // 内容为空，显示示例内容
+                            dynamicContent.innerHTML = `
+                                <h2>${title}</h2>
+                                <p><strong>核心内容：</strong>这是关于${title}的详细研究内容展示。</p>
+                                
+                                <h3>🔬 主要研究方向</h3>
+                                <ul>
+                                    <li><strong>研究方向一</strong>：详细说明...</li>
+                                    <li><strong>研究方向二</strong>：详细说明...</li>
+                                    <li><strong>研究方向三</strong>：详细说明...</li>
+                                </ul>
+                                
+                                <h3>📊 近期项目成果</h3>
+                                <p>我们完成了相关研究，并在多个地区开展试点评估。初步数据显示，通过优化方案，相关指标有显著提升。</p>
+                                
+                                <div class="back-hint">
+                                    <p><i class="fas fa-info-circle"></i> 这是一个示例页面。您可以创建实际的 ${url} 文件来展示详细内容。</p>
+                                </div>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('加载动态内容失败:', error);
+                        
+                        // 显示示例内容（优雅降级）
+                        dynamicContent.innerHTML = `
+                            <h2>${title}</h2>
+                            <p><strong>核心内容：</strong>这是关于${title}的详细研究内容展示。</p>
+                            
+                            <h3>🔬 主要研究方向</h3>
+                            <ul>
+                                <li><strong>政策研究与制度创新</strong>：探索适应新时代的教育治理体系</li>
+                                <li><strong>资源配置优化模型</strong>：研究教育资源在区域与校际间的科学配置</li>
+                                <li><strong>多元共治模式</strong>：探索"政府-学校-社会"协同治理机制</li>
+                            </ul>
+                            
+                            <h3>📊 近期项目成果</h3>
+                            <p>我们完成了《省级义务教育优质均衡发展指标体系》的构建，并在多个省份开展试点评估。</p>
+                            
+                            <div class="back-hint">
+                                <p><i class="fas fa-info-circle"></i> 注：实际文件 ${url} 未找到。您可以创建该文件来展示详细研究内容。</p>
+                                <p>创建文件后，点击卡片即可加载实际内容。</p>
+                            </div>
+                        `;
+                    });
+            }
+
+            // 2.3 关闭动态内容窗口
+            function closeDynamicContent() {
+                dynamicContainer.style.display = 'none';
+                overlay.style.display = 'none';
+                document.body.style.overflow = 'auto'; // 恢复背景滚动
+                dynamicContent.innerHTML = ''; // 清空内容
+                console.log('已关闭动态内容窗口');
+            }
+
+            // 绑定关闭事件
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeDynamicContent);
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', closeDynamicContent);
+            }
+            
+            // 按ESC键关闭
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && dynamicContainer.style.display === 'block') {
+                    closeDynamicContent();
+                }
+            });
+            
+            // ========== 3. 数据数字动画效果 ==========
+            const dataNumbers = document.querySelectorAll('.data-number');
+            
+            if (dataNumbers.length > 0) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const element = entry.target;
+                            const finalValue = parseInt(element.textContent.replace(/,/g, ''));
+                            const duration = 1500;
+                            const startTime = Date.now();
+                            
+                            function updateNumber() {
+                                const elapsed = Date.now() - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                const currentValue = Math.floor(finalValue * progress);
+                                
+                                element.textContent = currentValue.toLocaleString();
+                                
+                                if (progress < 1) {
+                                    requestAnimationFrame(updateNumber);
+                                } else {
+                                    element.textContent = finalValue.toLocaleString();
+                                }
+                            }
+                            
+                            updateNumber();
+                            observer.unobserve(element);
+                        }
+                    });
+                }, observerOptions);
+                
+                dataNumbers.forEach(number => {
+                    observer.observe(number);
+                });
+            }
+            
+            // ========== 4. 打印功能 ==========
+            const printButton = document.createElement('button');
+            printButton.innerHTML = '<i class="fas fa-print"></i> 打印本页';
+            printButton.className = 'print-button';
+            printButton.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #1a56db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 25px;
+                cursor: pointer;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.3s ease;
+                font-family: inherit;
+            `;
+            
+            document.body.appendChild(printButton);
+            
+            printButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+            });
+            
+            printButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+            });
+            
+            printButton.addEventListener('click', function() {
+                window.print();
+            });
+
+            console.log('网站初始化完成，所有功能已加载');
+        });
+    </script>
 </body>
 </html>
