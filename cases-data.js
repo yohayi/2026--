@@ -159,8 +159,7 @@ const educationCases = {
         status: "ongoing"
     },
     
-    // ==================== 添加新案例的分割线 ====================
-    // 只需复制以下模板，修改内容即可添加新案例
+  
     
     "finland-phenomenon-learning": {
         id: "finland-phenomenon-learning",
@@ -379,7 +378,50 @@ const educationCases = {
         source: "日本厚生劳动省，2024",
         status: "ongoing"
     }
-};
+},
+
+"your-case-id": {  // 使用英文短横线格式
+    id: "your-case-id",
+    title: "案例标题",
+    subtitle: "副标题",
+    period: "时间范围",
+    location: "实施地点",
+    icon: "图标名", // 从Font Awesome选择
+    color: "#颜色代码",
+    category: "案例类别",
+    tags: ["标签1", "标签2"],
+    
+    stats: [  // 数据统计
+        { value: "数值", label: "标签", icon: "图标" }
+    ],
+    
+    mechanisms: [  // 核心机制
+        {
+            title: "机制标题",
+            description: "详细说明",
+            relevance: "对应主建议方向"
+        }
+    ],
+    
+    outcomes: {  // 成效与挑战
+        positive: ["成效1", "成效2"],
+        challenges: ["挑战1", "挑战2"]
+    },
+    
+    dataReferences: [  // 数据参考
+        { label: "指标", value: "数值", year: "年份", source: "来源" }
+    ],
+    
+    insights: ["启示1", "启示2"],  // 对本建议的启示
+    
+    resources: [  // 相关资源
+        { type: "报告/法规/案例", title: "资源标题", url: "#" }
+    ],
+    
+    lastUpdated: "2024-01-01",
+    source: "数据来源",
+    status: "ongoing" // ongoing | verified | historical
+}    
 
 // 案例分类索引
 const caseCategories = {
