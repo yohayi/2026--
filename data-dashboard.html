@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调研核心数据摘要 - 知行教育研究课题组</title>
+    
+    <!-- 核心样式 -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="data-dashboard.css">
+    
+    <!-- 图表库 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 - 与主站风格一致 -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <i class="fas fa-chart-line logo-icon"></i>
+                    <div class="logo-text">
+                        <h1 class="org-name">调研核心数据摘要</h1>
+                        <h2 class="org-subtitle">中国教育制度改革数据支撑报告（2025版）</h2>
+                    </div>
+                </div>
+                <div class="language-switch">
+                    <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+                    <a href="assets/《调研核心数据摘要与初步发现》.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> 下载完整报告
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 导航 -->
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#overview" class="active"><i class="fas fa-search"></i> 核心摘要</a></li>
+                <li><a href="#charts"><i class="fas fa-chart-bar"></i> 数据图表</a></li>
+                <li><a href="#cases"><i class="fas fa-globe-americas"></i> 案例研究</a></li>
+                <li><a href="#targets"><i class="fas fa-bullseye"></i> 改革目标</a></li>
+                <li><a href="#insights"><i class="fas fa-lightbulb"></i> 主要发现</a></li>
+            </ul>
+        </nav>
+
+        <!-- 主要内容区 -->
+        <main class="dashboard-content">
+            
+            <!-- 第一部分：核心数据概览 -->
+            <section id="overview" class="overview-section">
+                <div class="section-header">
+                    <i class="fas fa-clipboard-check section-icon"></i>
+                    <h3>核心数据概览</h3>
+                    <p class="section-subtitle">基于2020-2024年教育统计与课题组专项调研</p>
+                </div>
+                
+                <div class="overview-grid">
+                    <div class="stat-card stat-card-primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>高中毕业生去向</h4>
+                            <div class="stat-main">
+                                <span class="stat-number">48.30%</span>
+                                <span class="stat-label">进入普通高校 (2024)</span>
+                            </div>
+                            <p class="stat-trend trend-up">较2020年上升3.1%</p>
+                            <p class="stat-desc">普职分流结构性压力持续</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-card-warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>学生心理健康</h4>
+                            <div class="stat-main">
+                                <span class="stat-number">34.70%</span>
+                                <span class="stat-label">焦虑比例 (2024)</span>
+                            </div>
+                            <p class="stat-trend trend-up">较2015年上升10.6%</p>
+                            <p class="stat-desc">十年上升幅度显著</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-card-success">
+                        <div class="stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>职业教育就业</h4>
+                            <div class="stat-main">
+                                <span class="stat-number">95.20%</span>
+                                <span class="stat-label">信息技术就业率</span>
+                            </div>
+                            <p class="stat-trend trend-up">企业满意度88.5%</p>
+                            <p class="stat-desc">但社会认可度仍有差距</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card stat-card-info">
+                        <div class="stat-icon">
+                            <i class="fas fa-balance-scale-right"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h4>教育资源分配</h4>
+                            <div class="stat-main">
+                                <span class="stat-number">2.8:1</span>
+                                <span class="stat-label">城乡资源比</span>
+                            </div>
+                            <p class="stat-trend trend-down">地区差异显著</p>
+                            <p class="stat-desc">北京投入指数92.0 vs 贵州60.0</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 第二部分：交互式图表 -->
+            <section id="charts" class="charts-section">
+                <div class="section-header">
+                    <i class="fas fa-chart-area section-icon"></i>
+                    <h3>数据可视化分析</h3>
+                    <div class="chart-controls">
+                        <button class="chart-control-btn active" data-chart="graduate-trend">
+                            毕业生去向
+                        </button>
+                        <button class="chart-control-btn" data-chart="mental-health">
+                            心理健康
+                        </button>
+                        <button class="chart-control-btn" data-chart="vocational-employment">
+                            职业教育就业
+                        </button>
+                        <button class="chart-control-btn" data-chart="regional-resources">
+                            地区资源分布
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="charts-container">
+                    <!-- 图表1：高中毕业生去向趋势 -->
+                    <div class="chart-wrapper active" id="graduate-trend-chart">
+                        <div class="chart-header">
+                            <h4>高中毕业生去向分布趋势 (2020-2024)</h4>
+                            <p class="chart-description">普通高校录取率持续上升，职业院校比例略有下降，直接就业稳定在10%左右</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="graduateChart"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #1a56db;"></span>
+                                <span class="legend-label">普通高校</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #f59e0b;"></span>
+                                <span class="legend-label">职业院校</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #10b981;"></span>
+                                <span class="legend-label">直接就业</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #6b7280;"></span>
+                                <span class="legend-label">其他</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 图表2：学生心理健康趋势 -->
+                    <div class="chart-wrapper" id="mental-health-chart" style="display: none;">
+                        <div class="chart-header">
+                            <h4>学生心理健康趋势 (2015-2024)</h4>
+                            <p class="chart-description">焦虑比例持续上升，幸福感指数呈下降趋势，需关注学生心理健康干预</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="mentalHealthChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 图表3：职业教育就业数据 -->
+                    <div class="chart-wrapper" id="vocational-employment-chart" style="display: none;">
+                        <div class="chart-header">
+                            <h4>职业教育专业就业情况 (2024年)</h4>
+                            <p class="chart-description">护理和信息技术专业就业率最高，但平均起薪存在专业差异</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="vocationalChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 图表4：地区教育资源分布 -->
+                    <div class="chart-wrapper" id="regional-resources-chart" style="display: none;">
+                        <div class="chart-header">
+                            <h4>地区教育资源分布 (2023年)</h4>
+                            <p class="chart-description">教育资源投入存在显著地区差异，与经济发展水平呈正相关</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="regionalChart"></canvas>
+                        </div>
+                        <div class="chart-note">
+                            <i class="fas fa-info-circle"></i> 注：投入指数为综合教育财政、师资、设施等指标的标准化得分
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <h5>原始数据表：高中毕业生去向分布 (2020-2024年)</h5>
+                        <button class="table-toggle-btn">
+                            <i class="fas fa-chevron-down"></i> 展开数据表
+                        </button>
+                    </div>
+                    <div class="data-table-wrapper" style="display: none;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>去向类型</th>
+                                    <th>2020年</th>
+                                    <th>2021年</th>
+                                    <th>2022年</th>
+                                    <th>2023年</th>
+                                    <th>2024年</th>
+                                    <th>变化趋势</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通高校</td>
+                                    <td>45.20%</td>
+                                    <td>46.50%</td>
+                                    <td>47.10%</td>
+                                    <td>47.80%</td>
+                                    <td>48.30%</td>
+                                    <td><span class="trend-indicator trend-up">↗ 上升</span></td>
+                                </tr>
+                                <tr>
+                                    <td>职业院校</td>
+                                    <td>38.70%</td>
+                                    <td>37.90%</td>
+                                    <td>37.20%</td>
+                                    <td>36.50%</td>
+                                    <td>35.90%</td>
+                                    <td><span class="trend-indicator trend-down">↘ 下降</span></td>
+                                </tr>
+                                <tr>
+                                    <td>直接就业</td>
+                                    <td>10.10%</td>
+                                    <td>9.80%</td>
+                                    <td>10.20%</td>
+                                    <td>10.50%</td>
+                                    <td>10.80%</td>
+                                    <td><span class="trend-indicator trend-stable">→ 稳定</span></td>
+                                </tr>
+                                <tr>
+                                    <td>其他</td>
+                                    <td>6.00%</td>
+                                    <td>5.80%</td>
+                                    <td>5.50%</td>
+                                    <td>5.20%</td>
+                                    <td>5.00%</td>
+                                    <td><span class="trend-indicator trend-down">↘ 下降</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 第三部分：案例研究 -->
+            <section id="cases" class="cases-section">
+                <div class="section-header">
+                    <i class="fas fa-university section-icon"></i>
+                    <h3>国内外教育改革实验案例</h3>
+                    <p class="section-subtitle">为改革建议提供可行性参照</p>
+                </div>
+                
+                <div class="cases-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="germany">
+                            <i class="fas fa-industry"></i> 德国双元制
+                        </button>
+                        <button class="tab-btn" data-tab="shanghai">
+                            <i class="fas fa-school"></i> 上海PBL探索
+                        </button>
+                    </div>
+                    
+                    <div class="tab-content active" id="germany-tab">
+                        <div class="case-card">
+                            <div class="case-header">
+                                <h4>德国"双元制"职业教育与社会衔接实践</h4>
+                                <span class="case-period">持续运行中 (2020-2024年为重点观察期)</span>
+                            </div>
+                            
+                            <div class="case-stats">
+                                <div class="case-stat">
+                                    <div class="case-stat-value">50万</div>
+                                    <div class="case-stat-label">年学徒人数</div>
+                                </div>
+                                <div class="case-stat">
+                                    <div class="case-stat-value">40万</div>
+                                    <div class="case-stat-label">参与企业</div>
+                                </div>
+                                <div class="case-stat">
+                                    <div class="case-stat-value">330+</div>
+                                    <div class="case-stat-label">培训职业</div>
+                                </div>
+                                <div class="case-stat">
+                                    <div class="case-stat-value">2/3</div>
+                                    <div class="case-stat-label">毕业生留用率</div>
+                                </div>
+                            </div>
+                            
+                            <div class="case-mechanism">
+                                <h5><i class="fas fa-cogs"></i> 核心机制（对应主建议"社会对接"方向）</h5>
+                                <ol>
+                                    <li><strong>法律与框架保障</strong>：《职业教育法》规定企业培训资质与学徒合同权利</li>
+                                    <li><strong>校企时间分配</strong>：每周3-4天在企业实践，1-2天在职业学校学习理论</li>
+                                    <li><strong>多元共治与质量保障</strong>：工商业联合会、手工业联合会等机构监督培训质量</li>
+                                    <li><strong>数字化转型</strong>："职业教育4.0"计划将数字技能融入所有培训职业</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="case-insight">
+                                <h5><i class="fas fa-lightbulb"></i> 对本建议的启示</h5>
+                                <p>证明了由法律保障、行业深度参与、理论实践紧密结合的校企合作模式，是解决"学校-社会"衔接、提升职业教育吸引力的有效路径。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="shanghai-tab" style="display: none;">
+                        <!-- 上海案例内容，结构类似 -->
+                        <div class="case-card">
+                            <div class="case-header">
+                                <h4>上海地区项目式学习（PBL）与家校社协同探索</h4>
+                                <span class="case-period">2018年至今（持续深化）</span>
+                            </div>
+                            
+                            <div class="case-mechanism">
+                                <h5><i class="fas fa-cogs"></i> 核心机制</h5>
+                                <ol>
+                                    <li><strong>学科内PBL深度融合</strong>：蔷薇小学低年级英语课围绕"校园安全"设计项目</li>
+                                    <li><strong>跨学科社会化PBL</strong>：同济中学"绿瓦大楼历史建筑保护"项目融合多学科</li>
+                                    <li><strong>构建"家校社协同育人教联体"</strong>：联合大学、社区、家长委员会共同策划</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="case-insight">
+                                <h5><i class="fas fa-lightbulb"></i> 对本建议的启示</h5>
+                                <p>提供了PBL在中国本土课堂落地的具体范式，展示了通过构建"学校-家庭-社区"多元主体协同的治理模式，能够有效提升学习深度与社会融合度。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 第四部分：改革目标 -->
+            <section id="targets" class="targets-section">
+                <div class="section-header">
+                    <i class="fas fa-bullseye section-icon"></i>
+                    <h3>三阶段改革方案数据指标 (2025-2035年)</h3>
+                    <p class="section-subtitle">为主建议书提供可衡量的参照基准</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-phase">
+                        <div class="phase-header phase-primary">
+                            <h4>第一阶段 (2025-2027)</h4>
+                            <p class="phase-subtitle">基础教育改革</p>
+                        </div>
+                        <div class="phase-targets">
+                            <div class="target-item">
+                                <div class="target-label">项目式学习覆盖率</div>
+                                <div class="target-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 30%;" data-target="90%"></div>
+                                    </div>
+                                    <div class="target-values">
+                                        <span>30%</span>
+                                        <span>→</span>
+                                        <span>90%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="target-item">
+                                <div class="target-label">焦虑比例降低幅度</div>
+                                <div class="target-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 42%;" data-target="12%"></div>
+                                    </div>
+                                    <div class="target-values">
+                                        <span>5%</span>
+                                        <span>→</span>
+                                        <span>12%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-phase">
+                        <div class="phase-header phase-secondary">
+                            <h4>第二阶段 (2028-2030)</h4>
+                            <p class="phase-subtitle">职业教育改革</p>
+                        </div>
+                        <div class="phase-targets">
+                            <div class="target-item">
+                                <div class="target-label">校企合作覆盖率</div>
+                                <div class="target-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 42%;" data-target="95%"></div>
+                                    </div>
+                                    <div class="target-values">
+                                        <span>40%</span>
+                                        <span>→</span>
+                                        <span>95%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="target-item">
+                                <div class="target-label">职教社会认可度</div>
+                                <div class="target-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 57%;" data-target="70%"></div>
+                                    </div>
+                                    <div class="target-values">
+                                        <span>40%</span>
+                                        <span>→</span>
+                                        <span>70%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-phase">
+                        <div class="phase-header phase-tertiary">
+                            <h4>第三阶段 (2031-2035)</h4>
+                            <p class="phase-subtitle">评价体系改革</p>
+                        </div>
+                        <div class="phase-targets">
+                            <div class="target-item">
+                                <div class="target-label">成长档案使用率</div>
+                                <div class="target-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 21%;" data-target="95%"></div>
+                                    </div>
+                                    <div class="target-values">
+                                        <span>20%</span>
+                                        <span>→</span>
+                                        <span>95%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="target-item">
+                                <div class="target-label">高校多元录取率</div>
+                                <div class="target-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 12%;" data-target="85%"></div>
+                                    </div>
+                                    <div class="target-values">
+                                        <span>10%</span>
+                                        <span>→</span>
+                                        <span>85%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 第五部分：主要发现 -->
+            <section id="insights" class="insights-section">
+                <div class="section-header">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h3>主要发现与改革支撑</h3>
+                </div>
+                
+                <div class="insights-grid">
+                    <div class="insight-card insight-problem">
+                        <div class="insight-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>当前问题数据</h4>
+                            <span class="insight-tag">支撑改革必要性</span>
+                        </div>
+                        <ul class="insight-list">
+                            <li><strong>教育衔接与分流问题</strong>：普职分流结构性压力持续，2024年48.3%高中生进入普通高校</li>
+                            <li><strong>学生心理健康问题</strong>：焦虑比例从2015年24.1%升至2024年34.7%</li>
+                            <li><strong>教育资源分配问题</strong>：地区投入指数差异大（北京92.0 vs 贵州60.0）</li>
+                            <li><strong>就业市场匹配问题</strong>：职教就业率虽高，但社会认可度与本科教育仍有差距</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="insight-card insight-solution">
+                        <div class="insight-header">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>实验实践成效</h4>
+                            <span class="insight-tag">支撑改革可行性</span>
+                        </div>
+                        <ul class="insight-list">
+                            <li><strong>德国双元制</strong>：证明了法律化、标准化、行业深度参与的校企合作模式的有效性</li>
+                            <li><strong>上海PBL与协同探索</strong>：证明了PBL模式在中国课堂可成功实施，并为治理创新提供了本土化范例</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="insight-card insight-target">
+                        <div class="insight-header">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>改革目标数据</h4>
+                            <span class="insight-tag">支撑改革可测性</span>
+                        </div>
+                        <ul class="insight-list">
+                            <li><strong>第一阶段（基础）</strong>：PBL覆盖率达90%，焦虑降低12%</li>
+                            <li><strong>第二阶段（职教）</strong>：校企合作覆盖率达95%，社会认可度提升至70%</li>
+                            <li><strong>第三阶段（评价）</strong>：多元评价学校占比达90%，高校多元录取率达85%</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>知行教育研究课题组 · 数据研究中心</span>
+                </div>
+                <div class="footer-info">
+                    <p>© 2025 教育改革与创新研究中心 · 《中国教育制度改革数据支撑报告（2025版）》</p>
+                    <p class="footer-links">
+                        <a href="index.html">返回主页</a> | 
+                        <a href="assets/《调研核心数据摘要与初步发现》.pdf" download>下载完整报告</a> | 
+                        <a href="#contact">数据咨询</a>
+                    </p>
+                </div>
+                <div class="footer-meta">
+                    <p><small>报告发布日期：2025年12月13日 · 数据更新周期：年度</small></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 脚本文件 -->
+    <script src="data-dashboard.js"></script>
+</body>
+</html>
