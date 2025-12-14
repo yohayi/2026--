@@ -536,7 +536,278 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.boxShadow = 'var(--card-shadow)';
         });
     }
+    // 在文件末尾的init()函数前添加以下代码
+
+// 案例动态渲染系统
+function initCaseStudies() {
+    console.log(`初始化案例系统，共 ${Object.keys(educationCases).length} 个案例`);
     
+    const tabButtonsContainer = document.querySelector('.tab-buttons');
+    const tabContentContainer = document.querySelector('.cases-tabs');
+    
+    if (!tabButtonsContainer || !tabContentContainer) {
+        console.error('案例容器未找到');
+        return;
+    }
+    
+    // 清空现有内容（保留第一个作为模板或完全重建）
+    tabButtonsContainer.innerHTML = '';
+    
+    // 创建案例筛选器
+    createCaseFilter();
+    
+    // 获取所有案例ID
+    const caseIds = Object.keys(educationCases);
+    
+    // 生成标签按钮和内容
+    caseIds.forEach((caseId, index) => {
+        const caseData = educationCases[caseId];
+        
+        // 创建标签按钮
+        const tabButton = document.createElement('button');
+        tabButton.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+        tabButton.setAttribute('data-tab', caseId);
+        tabButton.innerHTML = `<i class="fas fa-${caseData.icon}"></i> ${caseData.title.split(' ')[0]}`; // 取标题第一个词
+        
+        tabButtonsContainer.appendChild(tabButton);
+        
+        // 创建标签内容
+        const tabContent = document.createElement('div');
+        tabContent.className = `tab-content ${index === 0 ? 'active' : ''}`;
+        tabContent.id = `${caseId}-tab`;
+        if (index > 0) tabContent.style.display = 'none';
+        
+        // 生成案例卡片
+        tabContent.innerHTML = generateCaseCardHTML(caseData);
+        tabContentContainer.appendChild(tabContent);
+    });
+    
+    // 重新绑定标签切换事件
+    initCaseTabs();
+    
+    // 更新案例统计
+    updateCaseStats();
+}
+
+// 生成案例卡片的HTML
+function generateCaseCardHTML(caseData) {
+    return `
+        <div class="case-card" data-category="${caseData.category}" data-tags="${caseData.tags.join(',')}">
+            <div class="case-header">
+                <h4>${caseData.title}</h4>
+                <div class="case-meta">
+                    <span class="case-period"><i class="fas fa-calendar-alt"></i> ${caseData.period}</span>
+                    <span class="case-location"><i class="fas fa-map-marker-alt"></i> ${caseData.location}</span>
+                    <span class="case-category" style="background: ${caseData.color}20; color: ${caseData.color}">${caseData.category}</span>
+                </div>
+            </div>
+            
+            <div class="case-stats">
+                ${caseData.stats.map(stat => `
+                    <div class="case-stat">
+                        <div class="case-stat-icon">
+                            <i class="fas fa-${stat.icon}"></i>
+                        </div>
+                        <div class="case-stat-value">${stat.value}</div>
+                        <div class="case-stat-label">${stat.label}</div>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div class="case-mechanism">
+                <h5><i class="fas fa-cogs"></i> 核心机制（对应主建议方向）</h5>
+                <div class="mechanisms-grid">
+                    ${caseData.mechanisms.map((mechanism, idx) => `
+                        <div class="mechanism-item">
+                            <div class="mechanism-number">${idx + 1}</div>
+                            <div class="mechanism-content">
+                                <h6>${mechanism.title}</h6>
+                                <p>${mechanism.description}</p>
+                                <span class="mechanism-relevance">${mechanism.relevance}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="case-outcomes">
+                <div class="outcome-column">
+                    <h6><i class="fas fa-check-circle" style="color: #10b981;"></i> 成效</h6>
+                    <ul>
+                        ${caseData.outcomes.positive.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="outcome-column">
+                    <h6><i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i> 挑战</h6>
+                    <ul>
+                        ${caseData.outcomes.challenges.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+            
+            ${caseData.dataReferences.length > 0 ? `
+            <div class="case-data">
+                <h6><i class="fas fa-database"></i> 数据参考</h6>
+                <div class="data-grid">
+                    ${caseData.dataReferences.map(ref => `
+                        <div class="data-item">
+                            <div class="data-label">${ref.label}</div>
+                            <div class="data-value">${ref.value}</div>
+                            <div class="data-meta">${ref.year} | ${ref.source}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            <div class="case-insight">
+                <h5><i class="fas fa-lightbulb"></i> 对本建议的启示</h5>
+                <div class="insights-list">
+                    ${caseData.insights.map(insight => `
+                        <div class="insight-item">
+                            <i class="fas fa-arrow-right"></i>
+                            <p>${insight}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            ${caseData.resources.length > 0 ? `
+            <div class="case-resources">
+                <h6><i class="fas fa-link"></i> 相关资源</h6>
+                <div class="resources-grid">
+                    ${caseData.resources.map(resource => `
+                        <a href="${resource.url}" class="resource-link" target="_blank">
+                            <span class="resource-type">${resource.type}</span>
+                            <span class="resource-title">${resource.title}</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
+            <div class="case-footer">
+                <div class="case-tags">
+                    ${caseData.tags.map(tag => `<span class="case-tag">${tag}</span>`).join('')}
+                </div>
+                <div class="case-source">
+                    <small>数据来源: ${caseData.source} | 更新: ${caseData.lastUpdated}</small>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// 创建案例筛选器
+function createCaseFilter() {
+    const casesSection = document.querySelector('.cases-section');
+    if (!casesSection) return;
+    
+    const filterHTML = `
+        <div class="case-filters">
+            <div class="filter-group">
+                <label for="category-filter"><i class="fas fa-filter"></i> 按类别筛选:</label>
+                <select id="category-filter" class="filter-select">
+                    <option value="all">全部类别</option>
+                    <option value="职业教育">职业教育</option>
+                    <option value="基础教育">基础教育</option>
+                    <option value="课程改革">课程改革</option>
+                    <option value="教育政策">教育政策</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="tag-filter"><i class="fas fa-tags"></i> 按标签筛选:</label>
+                <div class="tag-filters">
+                    <button class="tag-filter active" data-tag="all">全部</button>
+                    <button class="tag-filter" data-tag="职业教育">职业教育</button>
+                    <button class="tag-filter" data-tag="项目式学习">项目式学习</button>
+                    <button class="tag-filter" data-tag="跨学科">跨学科</button>
+                    <button class="tag-filter" data-tag="国际案例">国际案例</button>
+                </div>
+            </div>
+            <div class="filter-stats">
+                <span id="case-count">0</span> 个案例
+            </div>
+        </div>
+    `;
+    
+    const sectionHeader = casesSection.querySelector('.section-header');
+    sectionHeader.insertAdjacentHTML('afterend', filterHTML);
+    
+    // 绑定筛选事件
+    initCaseFilters();
+}
+
+// 初始化案例筛选
+function initCaseFilters() {
+    const categoryFilter = document.getElementById('category-filter');
+    const tagFilters = document.querySelectorAll('.tag-filter');
+    
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', filterCases);
+    }
+    
+    tagFilters.forEach(filter => {
+        filter.addEventListener('click', function() {
+            tagFilters.forEach(f => f.classList.remove('active'));
+            this.classList.add('active');
+            filterCases();
+        });
+    });
+}
+
+// 筛选案例
+function filterCases() {
+    const selectedCategory = document.getElementById('category-filter')?.value || 'all';
+    const selectedTag = document.querySelector('.tag-filter.active')?.dataset.tag || 'all';
+    const caseCards = document.querySelectorAll('.case-card');
+    
+    let visibleCount = 0;
+    
+    caseCards.forEach(card => {
+        const cardCategory = card.dataset.category;
+        const cardTags = card.dataset.tags.split(',');
+        
+        const categoryMatch = selectedCategory === 'all' || cardCategory === selectedCategory;
+        const tagMatch = selectedTag === 'all' || cardTags.includes(selectedTag);
+        
+        if (categoryMatch && tagMatch) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    // 更新计数
+    const caseCountEl = document.getElementById('case-count');
+    if (caseCountEl) {
+        caseCountEl.textContent = visibleCount;
+    }
+}
+
+// 更新案例统计
+function updateCaseStats() {
+    const caseCount = Object.keys(educationCases).length;
+    const categories = [...new Set(Object.values(educationCases).map(c => c.category))];
+    
+    console.log(`案例库统计: ${caseCount}个案例, ${categories.length}个类别`);
+}
+
+// 修改init()函数，在初始化时调用案例系统
+function init() {
+    initCharts();
+    initChartSwitcher();
+    initCaseStudies(); // 替换原来的 initCaseTabs()
+    initDataTable();
+    initSmoothScroll();
+    animateProgressBars();
+    animateNumbers();
+    initDataExport();
+    
+    console.log('数据仪表盘初始化完成');
+}
     // 初始化所有功能
     function init() {
         initCharts();
