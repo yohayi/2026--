@@ -54,6 +54,27 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    // 修改导航切换逻辑
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    if (!btn.href) {
+        btn.addEventListener('click', function() {
+            // 更新按钮状态
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // 显示对应部分
+            const section = this.dataset.section;
+            const sections = ['charts', 'cases', 'tables', 'comparison'];
+            
+            sections.forEach(sec => {
+                const element = document.getElementById(`${sec}-section`);
+                if (element) {
+                    element.style.display = (sec === section) ? 'block' : 'none';
+                }
+            });
+        });
+    }
+});
 
     // ========== 2. 新增：动态内容加载功能 ==========
     console.log('正在初始化动态内容加载功能...');
