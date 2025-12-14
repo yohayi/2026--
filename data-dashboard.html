@@ -3,558 +3,608 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>调研核心数据摘要 - 知行教育研究课题组</title>
+    <title>教育数据报告 - 知行教育研究课题组</title>
     
-    <!-- 核心样式 -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="data-dashboard.css">
-    <!-- 在Chart.js引入之后，data-dashboard.js之前 -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- 新增：案例数据 -->
-<script src="cases-data.js"></script>
-<script src="data-dashboard.js"></script>
-    
-    <!-- 图表库 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- 字体图标 -->
+    <!-- 字体和图标 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="data-dashboard.css">
+    
+    <style>
+        /* 基础样式补充 */
+        :root {
+            --primary-color: #1a56db;
+            --secondary-color: #0e4aa3;
+            --accent-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .dashboard-header h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .dashboard-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* 导航样式 */
+        .dashboard-nav {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: #f3f4f6;
+            color: var(--text-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn:hover {
+            background: #e5e7eb;
+        }
+        
+        .nav-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* 主要内容区 */
+        .dashboard-main {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .dashboard-main {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 侧边栏 */
+        .dashboard-sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        
+        /* 数据统计 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+        
+        /* 图表区 */
+        .dashboard-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .chart-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .chart-header h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+        
+        .chart-wrapper {
+            height: 300px;
+            position: relative;
+        }
+        
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        /* 案例展示区 */
+        .cases-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .cases-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .cases-header h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+        
+        .case-filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            color: var(--text-primary);
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .case-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 5px solid var(--primary-color);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .case-header {
+            margin-bottom: 1rem;
+        }
+        
+        .case-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .case-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+        
+        .case-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .case-stat {
+            text-align: center;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .case-stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .case-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+        
+        /* 底部 */
+        .dashboard-footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-secondary);
+            border-top: 1px solid #e5e7eb;
+            margin-top: 2rem;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .dashboard-header h1 {
+                font-size: 2rem;
+            }
+            
+            .dashboard-nav {
+                flex-direction: column;
+            }
+            
+            .case-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- 头部 -->
+    <header class="dashboard-header">
+        <div class="container">
+            <h1><i class="fas fa-chart-bar"></i> 教育数据报告</h1>
+            <p>知行教育研究课题组 - 调研核心数据摘要与初步发现</p>
+        </div>
+    </header>
+    
     <div class="container">
-        <!-- 头部 - 与主站风格一致 -->
-        <header class="header">
-            <div class="header-content">
-                <div class="logo-section">
-                    <i class="fas fa-chart-line logo-icon"></i>
-                    <div class="logo-text">
-                        <h1 class="org-name">调研核心数据摘要</h1>
-                        <h2 class="org-subtitle">中国教育制度改革数据支撑报告（2025版）</h2>
-                    </div>
-                </div>
-                <div class="language-switch">
-                    <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
-                    <a href="assets/《调研核心数据摘要与初步发现》.pdf" download class="download-btn">
-                        <i class="fas fa-download"></i> 下载完整报告
-                    </a>
-                </div>
-            </div>
-        </header>
-
         <!-- 导航 -->
-        <nav class="navbar">
-            <ul class="nav-links">
-                <li><a href="#overview" class="active"><i class="fas fa-search"></i> 核心摘要</a></li>
-                <li><a href="#charts"><i class="fas fa-chart-bar"></i> 数据图表</a></li>
-                <li><a href="#cases"><i class="fas fa-globe-americas"></i> 案例研究</a></li>
-                <li><a href="#targets"><i class="fas fa-bullseye"></i> 改革目标</a></li>
-                <li><a href="#insights"><i class="fas fa-lightbulb"></i> 主要发现</a></li>
-            </ul>
+        <nav class="dashboard-nav">
+            <button class="nav-btn active" data-section="charts">
+                <i class="fas fa-chart-line"></i> 数据图表
+            </button>
+            <button class="nav-btn" data-section="cases">
+                <i class="fas fa-globe-americas"></i> 案例研究
+            </button>
+            <button class="nav-btn" data-section="comparison">
+                <i class="fas fa-balance-scale"></i> 国际比较
+            </button>
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i> 返回首页
+            </a>
         </nav>
-
-        <!-- 主要内容区 -->
-        <main class="dashboard-content">
-            
-            <!-- 第一部分：核心数据概览 -->
-            <section id="overview" class="overview-section">
-                <div class="section-header">
-                    <i class="fas fa-clipboard-check section-icon"></i>
-                    <h3>核心数据概览</h3>
-                    <p class="section-subtitle">基于2020-2024年教育统计与课题组专项调研</p>
-                </div>
-                
-                <div class="overview-grid">
-                    <div class="stat-card stat-card-primary">
-                        <div class="stat-icon">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h4>高中毕业生去向</h4>
-                            <div class="stat-main">
-                                <span class="stat-number">48.30%</span>
-                                <span class="stat-label">进入普通高校 (2024)</span>
-                            </div>
-                            <p class="stat-trend trend-up">较2020年上升3.1%</p>
-                            <p class="stat-desc">普职分流结构性压力持续</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card stat-card-warning">
-                        <div class="stat-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h4>学生心理健康</h4>
-                            <div class="stat-main">
-                                <span class="stat-number">34.70%</span>
-                                <span class="stat-label">焦虑比例 (2024)</span>
-                            </div>
-                            <p class="stat-trend trend-up">较2015年上升10.6%</p>
-                            <p class="stat-desc">十年上升幅度显著</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card stat-card-success">
-                        <div class="stat-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h4>职业教育就业</h4>
-                            <div class="stat-main">
-                                <span class="stat-number">95.20%</span>
-                                <span class="stat-label">信息技术就业率</span>
-                            </div>
-                            <p class="stat-trend trend-up">企业满意度88.5%</p>
-                            <p class="stat-desc">但社会认可度仍有差距</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card stat-card-info">
-                        <div class="stat-icon">
-                            <i class="fas fa-balance-scale-right"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h4>教育资源分配</h4>
-                            <div class="stat-main">
-                                <span class="stat-number">2.8:1</span>
-                                <span class="stat-label">城乡资源比</span>
-                            </div>
-                            <p class="stat-trend trend-down">地区差异显著</p>
-                            <p class="stat-desc">北京投入指数92.0 vs 贵州60.0</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 第二部分：交互式图表 -->
-            <section id="charts" class="charts-section">
-                <div class="section-header">
-                    <i class="fas fa-chart-area section-icon"></i>
-                    <h3>数据可视化分析</h3>
-                    <div class="chart-controls">
-                        <button class="chart-control-btn active" data-chart="graduate-trend">
-                            毕业生去向
-                        </button>
-                        <button class="chart-control-btn" data-chart="mental-health">
-                            心理健康
-                        </button>
-                        <button class="chart-control-btn" data-chart="vocational-employment">
-                            职业教育就业
-                        </button>
-                        <button class="chart-control-btn" data-chart="regional-resources">
-                            地区资源分布
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="charts-container">
-                    <!-- 图表1：高中毕业生去向趋势 -->
-                    <div class="chart-wrapper active" id="graduate-trend-chart">
-                        <div class="chart-header">
-                            <h4>高中毕业生去向分布趋势 (2020-2024)</h4>
-                            <p class="chart-description">普通高校录取率持续上升，职业院校比例略有下降，直接就业稳定在10%左右</p>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="graduateChart"></canvas>
-                        </div>
-                        <div class="chart-legend">
-                            <div class="legend-item">
-                                <span class="legend-color" style="background-color: #1a56db;"></span>
-                                <span class="legend-label">普通高校</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-color" style="background-color: #f59e0b;"></span>
-                                <span class="legend-label">职业院校</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-color" style="background-color: #10b981;"></span>
-                                <span class="legend-label">直接就业</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-color" style="background-color: #6b7280;"></span>
-                                <span class="legend-label">其他</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 图表2：学生心理健康趋势 -->
-                    <div class="chart-wrapper" id="mental-health-chart" style="display: none;">
-                        <div class="chart-header">
-                            <h4>学生心理健康趋势 (2015-2024)</h4>
-                            <p class="chart-description">焦虑比例持续上升，幸福感指数呈下降趋势，需关注学生心理健康干预</p>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="mentalHealthChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <!-- 图表3：职业教育就业数据 -->
-                    <div class="chart-wrapper" id="vocational-employment-chart" style="display: none;">
-                        <div class="chart-header">
-                            <h4>职业教育专业就业情况 (2024年)</h4>
-                            <p class="chart-description">护理和信息技术专业就业率最高，但平均起薪存在专业差异</p>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="vocationalChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <!-- 图表4：地区教育资源分布 -->
-                    <div class="chart-wrapper" id="regional-resources-chart" style="display: none;">
-                        <div class="chart-header">
-                            <h4>地区教育资源分布 (2023年)</h4>
-                            <p class="chart-description">教育资源投入存在显著地区差异，与经济发展水平呈正相关</p>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="regionalChart"></canvas>
-                        </div>
-                        <div class="chart-note">
-                            <i class="fas fa-info-circle"></i> 注：投入指数为综合教育财政、师资、设施等指标的标准化得分
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="data-table-container">
-                    <div class="table-header">
-                        <h5>原始数据表：高中毕业生去向分布 (2020-2024年)</h5>
-                        <button class="table-toggle-btn">
-                            <i class="fas fa-chevron-down"></i> 展开数据表
-                        </button>
-                    </div>
-                    <div class="data-table-wrapper" style="display: none;">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>去向类型</th>
-                                    <th>2020年</th>
-                                    <th>2021年</th>
-                                    <th>2022年</th>
-                                    <th>2023年</th>
-                                    <th>2024年</th>
-                                    <th>变化趋势</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>普通高校</td>
-                                    <td>45.20%</td>
-                                    <td>46.50%</td>
-                                    <td>47.10%</td>
-                                    <td>47.80%</td>
-                                    <td>48.30%</td>
-                                    <td><span class="trend-indicator trend-up">↗ 上升</span></td>
-                                </tr>
-                                <tr>
-                                    <td>职业院校</td>
-                                    <td>38.70%</td>
-                                    <td>37.90%</td>
-                                    <td>37.20%</td>
-                                    <td>36.50%</td>
-                                    <td>35.90%</td>
-                                    <td><span class="trend-indicator trend-down">↘ 下降</span></td>
-                                </tr>
-                                <tr>
-                                    <td>直接就业</td>
-                                    <td>10.10%</td>
-                                    <td>9.80%</td>
-                                    <td>10.20%</td>
-                                    <td>10.50%</td>
-                                    <td>10.80%</td>
-                                    <td><span class="trend-indicator trend-stable">→ 稳定</span></td>
-                                </tr>
-                                <tr>
-                                    <td>其他</td>
-                                    <td>6.00%</td>
-                                    <td>5.80%</td>
-                                    <td>5.50%</td>
-                                    <td>5.20%</td>
-                                    <td>5.00%</td>
-                                    <td><span class="trend-indicator trend-down">↘ 下降</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 第三部分：案例研究 -->
-            <section id="cases" class="cases-section">
-                <div class="section-header">
-                    <i class="fas fa-university section-icon"></i>
-                    <h3>国内外教育改革实验案例</h3>
-                    <p class="section-subtitle">为改革建议提供可行性参照</p>
-                </div>
-                
-                <div class="cases-tabs">
-                    <div class="tab-buttons">
-                        <button class="tab-btn active" data-tab="germany">
-                            <i class="fas fa-industry"></i> 德国双元制
-                        </button>
-                        <button class="tab-btn" data-tab="shanghai">
-                            <i class="fas fa-school"></i> 上海PBL探索
-                        </button>
-                    </div>
-                    
-                    <div class="tab-content active" id="germany-tab">
-                        <div class="case-card">
-                            <div class="case-header">
-                                <h4>德国"双元制"职业教育与社会衔接实践</h4>
-                                <span class="case-period">持续运行中 (2020-2024年为重点观察期)</span>
-                            </div>
-                            
-                            <div class="case-stats">
-                                <div class="case-stat">
-                                    <div class="case-stat-value">50万</div>
-                                    <div class="case-stat-label">年学徒人数</div>
-                                </div>
-                                <div class="case-stat">
-                                    <div class="case-stat-value">40万</div>
-                                    <div class="case-stat-label">参与企业</div>
-                                </div>
-                                <div class="case-stat">
-                                    <div class="case-stat-value">330+</div>
-                                    <div class="case-stat-label">培训职业</div>
-                                </div>
-                                <div class="case-stat">
-                                    <div class="case-stat-value">2/3</div>
-                                    <div class="case-stat-label">毕业生留用率</div>
-                                </div>
-                            </div>
-                            
-                            <div class="case-mechanism">
-                                <h5><i class="fas fa-cogs"></i> 核心机制（对应主建议"社会对接"方向）</h5>
-                                <ol>
-                                    <li><strong>法律与框架保障</strong>：《职业教育法》规定企业培训资质与学徒合同权利</li>
-                                    <li><strong>校企时间分配</strong>：每周3-4天在企业实践，1-2天在职业学校学习理论</li>
-                                    <li><strong>多元共治与质量保障</strong>：工商业联合会、手工业联合会等机构监督培训质量</li>
-                                    <li><strong>数字化转型</strong>："职业教育4.0"计划将数字技能融入所有培训职业</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="case-insight">
-                                <h5><i class="fas fa-lightbulb"></i> 对本建议的启示</h5>
-                                <p>证明了由法律保障、行业深度参与、理论实践紧密结合的校企合作模式，是解决"学校-社会"衔接、提升职业教育吸引力的有效路径。</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="shanghai-tab" style="display: none;">
-                        <!-- 上海案例内容，结构类似 -->
-                        <div class="case-card">
-                            <div class="case-header">
-                                <h4>上海地区项目式学习（PBL）与家校社协同探索</h4>
-                                <span class="case-period">2018年至今（持续深化）</span>
-                            </div>
-                            
-                            <div class="case-mechanism">
-                                <h5><i class="fas fa-cogs"></i> 核心机制</h5>
-                                <ol>
-                                    <li><strong>学科内PBL深度融合</strong>：蔷薇小学低年级英语课围绕"校园安全"设计项目</li>
-                                    <li><strong>跨学科社会化PBL</strong>：同济中学"绿瓦大楼历史建筑保护"项目融合多学科</li>
-                                    <li><strong>构建"家校社协同育人教联体"</strong>：联合大学、社区、家长委员会共同策划</li>
-                                </ol>
-                            </div>
-                            
-                            <div class="case-insight">
-                                <h5><i class="fas fa-lightbulb"></i> 对本建议的启示</h5>
-                                <p>提供了PBL在中国本土课堂落地的具体范式，展示了通过构建"学校-家庭-社区"多元主体协同的治理模式，能够有效提升学习深度与社会融合度。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 第四部分：改革目标 -->
-            <section id="targets" class="targets-section">
-                <div class="section-header">
-                    <i class="fas fa-bullseye section-icon"></i>
-                    <h3>三阶段改革方案数据指标 (2025-2035年)</h3>
-                    <p class="section-subtitle">为主建议书提供可衡量的参照基准</p>
-                </div>
-                
-                <div class="timeline">
-                    <div class="timeline-phase">
-                        <div class="phase-header phase-primary">
-                            <h4>第一阶段 (2025-2027)</h4>
-                            <p class="phase-subtitle">基础教育改革</p>
-                        </div>
-                        <div class="phase-targets">
-                            <div class="target-item">
-                                <div class="target-label">项目式学习覆盖率</div>
-                                <div class="target-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 30%;" data-target="90%"></div>
-                                    </div>
-                                    <div class="target-values">
-                                        <span>30%</span>
-                                        <span>→</span>
-                                        <span>90%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="target-item">
-                                <div class="target-label">焦虑比例降低幅度</div>
-                                <div class="target-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 42%;" data-target="12%"></div>
-                                    </div>
-                                    <div class="target-values">
-                                        <span>5%</span>
-                                        <span>→</span>
-                                        <span>12%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-phase">
-                        <div class="phase-header phase-secondary">
-                            <h4>第二阶段 (2028-2030)</h4>
-                            <p class="phase-subtitle">职业教育改革</p>
-                        </div>
-                        <div class="phase-targets">
-                            <div class="target-item">
-                                <div class="target-label">校企合作覆盖率</div>
-                                <div class="target-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 42%;" data-target="95%"></div>
-                                    </div>
-                                    <div class="target-values">
-                                        <span>40%</span>
-                                        <span>→</span>
-                                        <span>95%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="target-item">
-                                <div class="target-label">职教社会认可度</div>
-                                <div class="target-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 57%;" data-target="70%"></div>
-                                    </div>
-                                    <div class="target-values">
-                                        <span>40%</span>
-                                        <span>→</span>
-                                        <span>70%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-phase">
-                        <div class="phase-header phase-tertiary">
-                            <h4>第三阶段 (2031-2035)</h4>
-                            <p class="phase-subtitle">评价体系改革</p>
-                        </div>
-                        <div class="phase-targets">
-                            <div class="target-item">
-                                <div class="target-label">成长档案使用率</div>
-                                <div class="target-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 21%;" data-target="95%"></div>
-                                    </div>
-                                    <div class="target-values">
-                                        <span>20%</span>
-                                        <span>→</span>
-                                        <span>95%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="target-item">
-                                <div class="target-label">高校多元录取率</div>
-                                <div class="target-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 12%;" data-target="85%"></div>
-                                    </div>
-                                    <div class="target-values">
-                                        <span>10%</span>
-                                        <span>→</span>
-                                        <span>85%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 第五部分：主要发现 -->
-            <section id="insights" class="insights-section">
-                <div class="section-header">
-                    <i class="fas fa-lightbulb section-icon"></i>
-                    <h3>主要发现与改革支撑</h3>
-                </div>
-                
-                <div class="insights-grid">
-                    <div class="insight-card insight-problem">
-                        <div class="insight-header">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <h4>当前问题数据</h4>
-                            <span class="insight-tag">支撑改革必要性</span>
-                        </div>
-                        <ul class="insight-list">
-                            <li><strong>教育衔接与分流问题</strong>：普职分流结构性压力持续，2024年48.3%高中生进入普通高校</li>
-                            <li><strong>学生心理健康问题</strong>：焦虑比例从2015年24.1%升至2024年34.7%</li>
-                            <li><strong>教育资源分配问题</strong>：地区投入指数差异大（北京92.0 vs 贵州60.0）</li>
-                            <li><strong>就业市场匹配问题</strong>：职教就业率虽高，但社会认可度与本科教育仍有差距</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="insight-card insight-solution">
-                        <div class="insight-header">
-                            <i class="fas fa-check-circle"></i>
-                            <h4>实验实践成效</h4>
-                            <span class="insight-tag">支撑改革可行性</span>
-                        </div>
-                        <ul class="insight-list">
-                            <li><strong>德国双元制</strong>：证明了法律化、标准化、行业深度参与的校企合作模式的有效性</li>
-                            <li><strong>上海PBL与协同探索</strong>：证明了PBL模式在中国课堂可成功实施，并为治理创新提供了本土化范例</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="insight-card insight-target">
-                        <div class="insight-header">
-                            <i class="fas fa-chart-line"></i>
-                            <h4>改革目标数据</h4>
-                            <span class="insight-tag">支撑改革可测性</span>
-                        </div>
-                        <ul class="insight-list">
-                            <li><strong>第一阶段（基础）</strong>：PBL覆盖率达90%，焦虑降低12%</li>
-                            <li><strong>第二阶段（职教）</strong>：校企合作覆盖率达95%，社会认可度提升至70%</li>
-                            <li><strong>第三阶段（评价）</strong>：多元评价学校占比达90%，高校多元录取率达85%</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </main>
         
-        <!-- 页脚 -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-chart-line"></i>
-                    <span>知行教育研究课题组 · 数据研究中心</span>
+        <div class="dashboard-main">
+            <!-- 侧边栏 -->
+            <aside class="dashboard-sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-info-circle"></i> 报告信息</h3>
+                    <p><strong>报告标题：</strong>《调研核心数据摘要与初步发现》</p>
+                    <p><strong>发布日期：</strong>2025年12月</p>
+                    <p><strong>数据周期：</strong>2020-2024年</p>
+                    <p><strong>样本规模：</strong>5,200份问卷</p>
                 </div>
-                <div class="footer-info">
-                    <p>© 2025 教育改革与创新研究中心 · 《中国教育制度改革数据支撑报告（2025版）》</p>
-                    <p class="footer-links">
-                        <a href="index.html">返回主页</a> | 
-                        <a href="assets/《调研核心数据摘要与初步发现》.pdf" download>下载完整报告</a> | 
-                        <a href="#contact">数据咨询</a>
-                    </p>
+                
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-chart-pie"></i> 关键指标</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">48.3%</div>
+                            <div class="stat-label">普通高校升学率</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">34.7%</div>
+                            <div class="stat-label">学生焦虑比例</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">92.0</div>
+                            <div class="stat-label">北京教育投入指数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">60.0</div>
+                            <div class="stat-label">贵州教育投入指数</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-meta">
-                    <p><small>报告发布日期：2025年12月13日 · 数据更新周期：年度</small></p>
+                
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-download"></i> 下载报告</h3>
+                    <p>获取完整数据报告：</p>
+                    <button id="download-pdf" class="nav-btn" style="width: 100%; margin-top: 0.5rem;">
+                        <i class="fas fa-file-pdf"></i> 下载PDF版本
+                    </button>
                 </div>
-            </div>
+            </aside>
+            
+            <!-- 主要内容 -->
+            <main class="dashboard-content">
+                <!-- 数据图表部分 -->
+                <section id="charts-section" class="chart-section">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-graduation-cap"></i> 高中毕业生去向趋势</h3>
+                        <select id="chart-selector" class="filter-select">
+                            <option value="graduate">毕业生去向</option>
+                            <option value="mentalHealth">心理健康</option>
+                            <option value="vocational">职业教育就业</option>
+                            <option value="regional">地区资源分布</option>
+                        </select>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="graduateChart"></canvas>
+                    </div>
+                </section>
+                
+                <!-- 案例研究部分 -->
+                <section id="cases-section" class="cases-section" style="display: none;">
+                    <div class="cases-header">
+                        <h3><i class="fas fa-globe-americas"></i> 国内外教育改革实验案例</h3>
+                        <div class="case-filters">
+                            <select id="category-filter" class="filter-select">
+                                <option value="all">全部类别</option>
+                                <option value="职业教育">职业教育</option>
+                                <option value="基础教育">基础教育</option>
+                                <option value="课程改革">课程改革</option>
+                                <option value="教育政策">教育政策</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="cases-container" class="case-grid">
+                        <!-- 案例将通过JavaScript动态加载 -->
+                    </div>
+                </section>
+                
+                <!-- 国际比较部分 -->
+                <section id="comparison-section" class="chart-section" style="display: none;">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-balance-scale"></i> 国际教育指标比较</h3>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <footer class="dashboard-footer">
+            <p>© 2025 知行教育研究课题组 - 教育改革与创新研究中心</p>
+            <p>数据来源：教育部统计年鉴、各省市教育部门、国际教育组织报告</p>
         </footer>
     </div>
     
     <!-- 脚本文件 -->
-    <script src="data-dashboard.js"></script>
+    <script src="cases-data.js"></script>
+    <script>
+        // 简单的数据可视化初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('数据报告页面加载完成');
+            
+            // 检查案例数据
+            if (typeof educationCases !== 'undefined') {
+                console.log(`✅ 检测到 ${Object.keys(educationCases).length} 个案例`);
+                
+                // 渲染所有案例
+                renderAllCases();
+            } else {
+                console.error('❌ educationCases 未定义！');
+                document.getElementById('cases-container').innerHTML = 
+                    '<div style="text-align: center; padding: 3rem; color: #666;">' +
+                    '<i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #f59e0b; margin-bottom: 1rem;"></i>' +
+                    '<h3>案例数据加载失败</h3>' +
+                    '<p>请确保 cases-data.js 文件存在且正确</p>' +
+                    '</div>';
+            }
+            
+            // 导航切换
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (!btn.href) { // 排除链接按钮
+                    btn.addEventListener('click', function() {
+                        // 更新按钮状态
+                        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // 显示对应部分
+                        const section = this.dataset.section;
+                        document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
+                        
+                        if (section === 'charts') {
+                            document.getElementById('charts-section').style.display = 'block';
+                        } else if (section === 'cases') {
+                            document.getElementById('cases-section').style.display = 'block';
+                        } else if (section === 'comparison') {
+                            document.getElementById('comparison-section').style.display = 'block';
+                        }
+                    });
+                }
+            });
+            
+            // 案例筛选
+            document.getElementById('category-filter')?.addEventListener('change', function() {
+                filterCases(this.value);
+            });
+            
+            // 下载按钮
+            document.getElementById('download-pdf')?.addEventListener('click', function() {
+                alert('PDF报告下载功能正在开发中...');
+            });
+            
+            // 图表选择器
+            document.getElementById('chart-selector')?.addEventListener('change', function() {
+                alert('图表切换功能正在开发中...');
+            });
+        });
+        
+        // 渲染所有案例
+        function renderAllCases() {
+            const container = document.getElementById('cases-container');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            Object.values(educationCases).forEach(caseData => {
+                const caseCard = document.createElement('div');
+                caseCard.className = 'case-card';
+                caseCard.style.borderLeftColor = caseData.color;
+                caseCard.dataset.category = caseData.category;
+                
+                caseCard.innerHTML = `
+                    <div class="case-header">
+                        <div class="case-title">${caseData.title}</div>
+                        <div class="case-subtitle">${caseData.subtitle}</div>
+                        <div class="case-meta">
+                            <span><i class="fas fa-calendar"></i> ${caseData.period}</span>
+                            <span><i class="fas fa-map-marker-alt"></i> ${caseData.location}</span>
+                            <span style="background: ${caseData.color}20; color: ${caseData.color}; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem;">
+                                ${caseData.category}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="case-stats">
+                        ${caseData.stats.slice(0, 4).map(stat => `
+                            <div class="case-stat">
+                                <div class="case-stat-value">${stat.value}</div>
+                                <div class="case-stat-label">${stat.label}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div style="margin-top: 1rem;">
+                        <strong>核心机制：</strong>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem; font-size: 0.9rem;">
+                            ${caseData.mechanisms.slice(0, 2).map(mech => `
+                                <li>${mech.title}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                        <i class="fas fa-lightbulb"></i> ${caseData.insights[0].substring(0, 100)}...
+                    </div>
+                    
+                    <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #999;">
+                        <span>更新：${caseData.lastUpdated}</span>
+                        <span>${caseData.source}</span>
+                    </div>
+                `;
+                
+                container.appendChild(caseCard);
+            });
+        }
+        
+        // 筛选案例
+        function filterCases(category) {
+            const caseCards = document.querySelectorAll('.case-card');
+            let visibleCount = 0;
+            
+            caseCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            console.log(`显示 ${visibleCount} 个案例（类别：${category}）`);
+        }
+    </script>
 </body>
 </html>
