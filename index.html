@@ -7,7 +7,124 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg">
+    
+    <style>
+        /* === 新增：数据报告卡片样式 === */
+        .data-report-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid #f59e0b;
+            transition: all 0.3s ease;
+        }
+        
+        .data-report-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .report-card-icon {
+            font-size: 2.5rem;
+            color: #f59e0b;
+            padding: 1rem;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        
+        .report-card-content {
+            flex: 1;
+        }
+        
+        .report-card-content h4 {
+            font-size: 1.2rem;
+            color: #1a56db;
+            margin-bottom: 0.75rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        .report-card-content p {
+            color: #6b7280;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+        
+        .report-card-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .card-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .card-btn-primary {
+            background: #1a56db;
+            color: white;
+        }
+        
+        .card-btn-primary:hover {
+            background: #0e4aa3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(14, 74, 163, 0.2);
+        }
+        
+        .card-btn-secondary {
+            background: #f3f4f6;
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .card-btn-secondary:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .data-report-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .report-card-actions {
+                justify-content: center;
+            }
+            
+            .report-card-icon {
+                align-self: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .report-card-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .card-btn {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -33,6 +150,8 @@
                 <li><a href="#research"><i class="fas fa-search"></i> 研究领域</a></li>
                 <li><a href="#report"><i class="fas fa-file-alt"></i> 研究报告</a></li>
                 <li><a href="#data"><i class="fas fa-chart-bar"></i> 调研数据</a></li>
+                <!-- 新增的数据报告页面链接 -->
+                <li><a href="data-dashboard.html" target="_blank"><i class="fas fa-file-pdf"></i> 数据报告</a></li>
                 <li><a href="#contact"><i class="fas fa-envelope"></i> 联系我们</a></li>
             </ul>
         </nav>
@@ -103,6 +222,25 @@
                         </div>
                     </div>
                     <p class="data-description">调研覆盖全国主要教育区域，样本具有广泛代表性，为政策建议提供坚实的数据支撑。</p>
+                    
+                    <!-- 新增：数据报告卡片链接 -->
+                    <div class="data-report-card">
+                        <div class="report-card-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="report-card-content">
+                            <h4>《调研核心数据摘要与初步发现》</h4>
+                            <p>完整数据报告包含：高中毕业生去向趋势、学生心理健康数据、职业教育就业分析、地区资源分布及国内外改革案例研究。</p>
+                            <div class="report-card-actions">
+                                <a href="data-dashboard.html" class="card-btn card-btn-primary" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> 浏览交互式报告
+                                </a>
+                                <a href="assets/《调研核心数据摘要与初步发现》.pdf" class="card-btn card-btn-secondary" download>
+                                    <i class="fas fa-download"></i> 下载PDF版本
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -124,14 +262,14 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>电子邮箱</h4>
-                                <p><a href="mailto:lizhixing@education-research.cn">youhaiyang@stu.hbnu.edu.cn</a></p>
+                                <p><a href="mailto:youhaiyang@stu.hbnu.edu.cn">youhaiyang@stu.hbnu.edu.cn</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-globe"></i>
                             <div>
                                 <h4>相关研究平台</h4>
-                                <p><a href="https://edu-research-platform.cn" target="_blank">https://yohayi.github.io/geometry-string-map/</a></p>
+                                <p><a href="https://yohayi.github.io/geometry-string-map/" target="_blank">https://yohayi.github.io/geometry-string-map/</a></p>
                             </div>
                         </div>
                     </div>
