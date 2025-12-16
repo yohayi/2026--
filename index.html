@@ -3,989 +3,890 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="实时流式AI环境监控系统 - 从感知到行动的毫秒级智能闭环">
-    <title>流式AI环境监控系统 | 实时智能监控解决方案</title>
+    <title>知行教育研究课题组 - 教育改革与创新研究中心</title>
+    
+    <!-- 字体和图标 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- 主样式文件 -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- 页面专用样式 -->
     <style>
-        /* 基础样式 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* 主页特有样式补充 */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(26, 86, 219, 0.1), rgba(245, 158, 11, 0.1));
+            border-radius: var(--border-radius);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
         }
-
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+        
+        .report-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 700;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 1rem auto;
+            border-radius: 2px;
         }
-
-        /* 确保所有链接都有颜色 */
-        a:not(.btn) {
-            color: #4a6ee0;
-            text-decoration: none;
+        
+        .report-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
             font-weight: 500;
-            transition: color 0.3s ease;
         }
-
-        a:not(.btn):hover {
-            color: #2a4ec7;
-            text-decoration: underline;
+        
+        /* 研究领域网格 */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-
-        /* 导航栏 */
-        .navbar {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        
+        .research-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background-color: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
-
-        .navbar .container {
+        
+        .research-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .research-card h4 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        /* 数据可视化 */
+        .data-visualization {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .data-item {
+            text-align: center;
+        }
+        
+        .data-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        .data-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        
+        .data-description {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 0;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        /* 案例卡片 */
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* 教育数据图表样式 */
+        .chart-container {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+        
+        .chart-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 20px;
+            margin-bottom: 1.5rem;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .logo i {
-            margin-right: 10px;
-            color: #4a6ee0;
-            font-size: 1.8rem;
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #2c3e50;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-menu li {
-            margin-left: 2rem;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-menu a i {
-            margin-right: 8px;
-        }
-
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            background-color: #4a6ee0;
-            color: white;
-        }
-
-        /* 英雄区域 */
-        .hero {
-            padding: 120px 0 80px;
-            background: linear-gradient(135deg, #4a6ee0 0%, #6a11cb 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
-            text-decoration: none;
+        
+        .chart-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
             font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
         }
-
-        .btn-primary {
-            background-color: white;
-            color: #4a6ee0;
-            border: 2px solid white;
-        }
-
-        .btn-primary:hover {
-            background-color: rgba(255, 255, 255, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .btn-large {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-        }
-
-        /* 系统流程图 */
-        .system-flow {
+        
+        .chart-legend {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 3rem;
+            gap: 1.5rem;
         }
-
-        .flow-step {
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .chart-bar {
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            gap: 2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+        }
+        
+        .bar-group {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
         }
-
-        .flow-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        
+        .bar-label {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
-
-        .flow-text {
+        
+        .bar {
+            width: 60%;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+        }
+        
+        .bar-1 {
+            background-color: var(--primary-color);
+        }
+        
+        .bar-2 {
+            background-color: var(--accent-color);
+        }
+        
+        .bar-3 {
+            background-color: #10b981;
+        }
+        
+        .bar-value {
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
             font-weight: 600;
-            font-size: 1rem;
         }
-
-        .flow-arrow {
-            position: absolute;
-            right: -30px;
-            top: 25px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* 核心特点 */
-        .features {
-            padding: 80px 0;
-            background-color: white;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2c3e50;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: #4a6ee0;
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        .features-grid {
+        
+        /* 调研方法部分 */
+        .methodology-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
-
-        .feature-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
+        
+        .methodology-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: rgba(26, 86, 219, 0.05);
+            border-radius: 8px;
         }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: #4a6ee0;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
+        
+        .methodology-icon {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .feature-card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .feature-stats {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #eee;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #4a6ee0;
-            line-height: 1;
-        }
-
-        .stat-text {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        /* 技术对比 */
-        .comparison {
-            padding: 80px 0;
-            background-color: #f8f9fa;
-        }
-
-        .comparison-table {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .table-header {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            background-color: #4a6ee0;
-            color: white;
-            font-weight: 600;
-        }
-
-        .header-cell {
-            padding: 1.2rem;
-            text-align: center;
-        }
-
-        .table-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            border-bottom: 1px solid #eee;
-        }
-
-        .table-row:last-child {
-            border-bottom: none;
-        }
-
-        .row-cell {
-            padding: 1.2rem;
-            text-align: center;
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .badge {
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-block;
-        }
-
-        .badge.good {
-            background-color: #e7f7ef;
-            color: #0a7c42;
-        }
-
-        .badge.medium {
-            background-color: #fff8e6;
-            color: #b88b0e;
-        }
-
-        .badge.bad {
-            background-color: #ffeaea;
-            color: #d93025;
-        }
-
-        /* 应用场景 */
-        .applications {
-            padding: 80px 0;
-            background-color: white;
-        }
-
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .app-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
-        }
-
-        .app-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .app-image {
-            height: 150px;
-            background: linear-gradient(135deg, #4a6ee0 0%, #6a11cb 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-
-        .app-content {
-            padding: 1.5rem;
-        }
-
-        .app-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: #2c3e50;
-        }
-
-        .app-content p {
-            color: #666;
-            margin-bottom: 1.2rem;
-            line-height: 1.6;
-        }
-
-        .app-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #4a6ee0;
-            font-weight: 600;
-        }
-
-        .app-link:hover {
-            text-decoration: underline;
-        }
-
-        /* CTA区域 */
-        .cta {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #4a6ee0 0%, #6a11cb 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        /* 页脚 */
-        .footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 3px;
-            background-color: #4a6ee0;
-        }
-
-        .footer-col p {
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-col a {
-            color: #bdc3c7;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-col a:hover {
-            color: white;
-            text-decoration: underline;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background: white;
             border-radius: 50%;
-            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* 相关项目链接区域 */
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        
+        .site-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(26, 86, 219, 0.03);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
             transition: all 0.3s ease;
         }
-
-        .social-links a:hover {
-            background-color: #4a6ee0;
-            transform: translateY(-3px);
+        
+        .site-link:hover {
+            background: rgba(26, 86, 219, 0.08) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-
-        .contact-info li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .contact-info i {
-            color: #4a6ee0;
-            width: 20px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #34495e;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        /* 响应式设计 */
+        
+        /* 响应式调整 */
         @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
-            }
-
-            .nav-menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: white;
-                padding: 1rem;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .nav-menu li {
-                margin: 0 0 0.5rem 0;
-            }
-
-            .nav-menu a {
-                padding: 0.8rem;
-            }
-
-            .hero-title {
-                font-size: 2.2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .system-flow {
-                gap: 1rem;
-            }
-
-            .flow-step {
-                flex-direction: row;
-                margin-bottom: 1.5rem;
-            }
-
-            .flow-arrow {
-                position: static;
-                transform: rotate(90deg);
-                margin: 0 10px;
-            }
-
-            .table-header,
-            .table-row {
+            .research-grid,
+            .case-grid {
                 grid-template-columns: 1fr;
             }
-
-            .header-cell,
-            .row-cell {
-                padding: 1rem;
+            
+            .data-visualization {
+                gap: 2rem;
             }
-
-            .cta-buttons {
+            
+            .data-number {
+                font-size: 2.8rem;
+            }
+            
+            .chart-header {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
+                gap: 1rem;
             }
-
-            .cta h2 {
-                font-size: 2rem;
+            
+            .chart-legend {
+                flex-wrap: wrap;
             }
-
-            .section-title {
-                font-size: 2rem;
+            
+            .sites-grid {
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-brain"></i>
-                <span>流式AI监控</span>
-            </a>
-            <button class="nav-toggle" aria-label="导航菜单">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="active"><i class="fas fa-home"></i> 首页</a></li>
-                <li><a href="technical.html"><i class="fas fa-cogs"></i> 技术细节</a></li>
-                <li><a href="demo.html"><i class="fas fa-video"></i> 演示案例</a></li>
-                <li><a href="patent.html"><i class="fas fa-file-contract"></i> 专利文档</a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> 联系我们</a></li>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1.5rem;">
+                        <i class="fas fa-graduation-cap logo-icon"></i>
+                        <div class="logo-text">
+                            <h1 class="org-name">知行教育研究课题组</h1>
+                            <h2 class="org-subtitle">教育改革与创新研究中心</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="language-switch">
+                    <a href="index.html" class="active">中文</a>
+                    <a href="index_en.html">EN</a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="#research"><i class="fas fa-search"></i> 研究领域</a></li>
+                <li><a href="#methodology"><i class="fas fa-clipboard-check"></i> 调研方法</a></li>
+                <li><a href="#cases"><i class="fas fa-lightbulb"></i> 案例展示</a></li>
+                <li><a href="#data-charts"><i class="fas fa-chart-line"></i> 数据图表</a></li>
+                <li><a href="#report"><i class="fas fa-file-alt"></i> 研究报告</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> 联系我们</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- 英雄区域 -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">实时流式AI环境监控系统</h1>
-                <p class="hero-subtitle">从"回合制"到"实时战斗"的革命性转变</p>
-                <p class="hero-description">
-                    基于MQTT流式数据处理和实时AI推理，实现毫秒级环境感知、决策和反馈闭环。
-                    将响应时间从秒级降低到毫秒级，开启智能监控新时代。
-                </p>
-                <div class="hero-buttons">
-                    <a href="technical.html" class="btn btn-primary">了解技术</a>
-                    <a href="demo.html" class="btn btn-secondary">查看演示</a>
+        <main class="main-content">
+            <section id="home" class="hero-section">
+                <div class="hero-content">
+                    <h3 class="report-title">关于深化教育制度改革的系统性建议与试点方案</h3>
+                    <div class="divider"></div>
+                    <p class="report-subtitle">教育现代化试点专项建议 | 基于5年追踪研究的实证分析</p>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="system-flow">
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-temperature-high"></i></div>
-                        <div class="flow-text">感知层</div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </div>
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-satellite-dish"></i></div>
-                        <div class="flow-text">数据流</div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </div>
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-robot"></i></div>
-                        <div class="flow-text">AI推理</div>
-                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
-                    </div>
-                    <div class="flow-step">
-                        <div class="flow-icon"><i class="fas fa-bolt"></i></div>
-                        <div class="flow-text">即时反馈</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- 核心特点 -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">核心创新特点</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>毫秒级响应</h3>
-                    <p>从传统5-10秒响应降低到50-200毫秒，实现真正的实时监控和干预。</p>
-                    <div class="feature-stats">
-                        <span class="stat-number">25-200x</span>
-                        <span class="stat-text">性能提升</span>
-                    </div>
+            <section id="report" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-paper-plane section-icon"></i>
+                    <h3>报告呈送</h3>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-stream"></i>
-                    </div>
-                    <h3>流式处理架构</h3>
-                    <p>事件驱动架构替代传统轮询模式，数据到达即触发处理，无等待延迟。</p>
-                    <div class="feature-stats">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-text">msg/秒吞吐量</span>
-                    </div>
+                <div class="card">
+                    <p><strong>呈送：</strong>教育部及相关教育主管部门</p>
+                    <p><strong>事由：</strong>教育现代化试点专项建议</p>
+                    <p><strong>课题组负责人：</strong>游海洋 学者</p>
+                    <p><strong>研究周期：</strong>2019年3月 - 2024年12月</p>
+                    <p><strong>数据来源：</strong>全国23省市5200份有效问卷 + 156所合作院校跟踪数据</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>智能并行决策</h3>
-                    <p>多模态数据融合与并行AI推理，实现精准的环境异常检测和预测。</p>
-                    <div class="feature-stats">
-                        <span class="stat-number">96.8%</span>
-                        <span class="stat-text">异常检出率</span>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>时空数据优化</h3>
-                    <p>专门优化的时序数据库，支持毫秒级查询和历史数据分析。</p>
-                    <div class="feature-stats">
-                        <span class="stat-number">99.94%</span>
-                        <span class="stat-text">系统可用性</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- 技术对比 -->
-    <section class="comparison">
-        <div class="container">
-            <h2 class="section-title">与传统系统的对比</h2>
-            <div class="comparison-table">
-                <div class="table-header">
-                    <div class="header-cell"></div>
-                    <div class="header-cell">传统轮询系统</div>
-                    <div class="header-cell">我们的流式系统</div>
+            <section id="research" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-flask section-icon"></i>
+                    <h3>核心研究领域</h3>
                 </div>
-                <div class="table-row">
-                    <div class="row-cell">响应延迟</div>
-                    <div class="row-cell"><span class="badge bad">5-10秒</span></div>
-                    <div class="row-cell"><span class="badge good">50-200毫秒</span></div>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <a href="research-edu-system.html" style="text-decoration: none; color: inherit;">
+                            <i class="fas fa-cogs card-icon"></i>
+                            <h4>教育制度设计</h4>
+                            <p>系统性教育政策研究与制度创新，探索适应新时代的教育治理体系。</p>
+                            <div class="btn btn-outline" style="margin-top: 1rem;">
+                                <i class="fas fa-book-open"></i> 查看详情
+                            </div>
+                        </a>
+                    </div>
+                    <div class="research-card">
+                        <a href="research-interdisciplinary.html" style="text-decoration: none; color: inherit;">
+                            <i class="fas fa-book-open card-icon"></i>
+                            <h4>跨学科课程开发</h4>
+                            <p>整合STEM、人文社科与艺术教育，构建综合性课程体系与教学方法。</p>
+                            <div class="btn btn-outline" style="margin-top: 1rem;">
+                                <i class="fas fa-book-open"></i> 查看详情
+                            </div>
+                        </a>
+                    </div>
+                    <div class="research-card">
+                        <a href="research-data-analysis.html" style="text-decoration: none; color: inherit;">
+                            <i class="fas fa-chart-line card-icon"></i>
+                            <h4>教育数据分析</h4>
+                            <p>基于大数据的教育评估与预测模型，支持科学决策与精准干预。</p>
+                            <div class="btn btn-outline" style="margin-top: 1rem;">
+                                <i class="fas fa-book-open"></i> 查看详情
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="table-row">
-                    <div class="row-cell">系统吞吐量</div>
-                    <div class="row-cell"><span class="badge bad">100-200 msg/s</span></div>
-                    <div class="row-cell"><span class="badge good">1000+ msg/s</span></div>
-                </div>
-                <div class="table-row">
-                    <div class="row-cell">异常检出率</div>
-                    <div class="row-cell"><span class="badge medium">85-90%</span></div>
-                    <div class="row-cell"><span class="badge good">95-98%</span></div>
-                </div>
-                <div class="table-row">
-                    <div class="row-cell">交互模式</div>
-                    <div class="row-cell"><span class="badge bad">被动响应</span></div>
-                    <div class="row-cell"><span class="badge good">主动干预</span></div>
-                </div>
-                <div class="table-row">
-                    <div class="row-cell">数据连续性</div>
-                    <div class="row-cell"><span class="badge medium">离散采样</span></div>
-                    <div class="row-cell"><span class="badge good">连续数据流</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- 应用场景 -->
-    <section class="applications">
-        <div class="container">
-            <h2 class="section-title">应用场景</h2>
-            <div class="applications-grid">
-                <div class="app-card">
-                    <div class="app-image">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>实验室安全监控</h3>
-                        <p>实时监测温度、湿度、气体浓度和人员活动，毫秒级响应异常情况。</p>
-                        <a href="demo.html#lab" class="app-link">查看案例 <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            <section id="methodology" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-clipboard-check section-icon"></i>
+                    <h3>调研方法与数据来源</h3>
                 </div>
-                <div class="app-card">
-                    <div class="app-image">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>智能农业温室</h3>
-                        <p>多目标优化控制，根据作物生长阶段自动调节环境参数。</p>
-                        <a href="demo.html#agriculture" class="app-link">查看案例 <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="app-card">
-                    <div class="app-image">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>工业物联网</h3>
-                        <p>设备状态监测与预测性维护，降低停机时间和维护成本。</p>
-                        <a href="demo.html#industry" class="app-link">查看案例 <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="app-card">
-                    <div class="app-image">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="app-content">
-                        <h3>智慧家居</h3>
-                        <p>智能环境调节和安防监控，提升居住舒适度和安全性。</p>
-                        <a href="demo.html#smart-home" class="app-link">查看案例 <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA区域 -->
-    <section class="cta">
-        <div class="container">
-            <h2>准备好体验下一代环境监控技术了吗？</h2>
-            <p>我们的技术已经完成原型验证，正在寻求合作伙伴和投资者。</p>
-            <div class="cta-buttons">
-                <a href="contact.html" class="btn btn-primary btn-large">立即联系</a>
-                <a href="patent.html" class="btn btn-secondary btn-large">查看专利</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>流式AI环境监控系统</h4>
-                    <p>基于流式处理和实时AI决策的环境智能监控与反馈系统，实现从感知到行动的毫秒级智能闭环。</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>快速链接</h4>
-                    <ul>
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="technical.html">技术细节</a></li>
-                        <li><a href="demo.html">演示案例</a></li>
-                        <li><a href="patent.html">专利文档</a></li>
-                        <li><a href="contact.html">联系我们</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>技术资源</h4>
-                    <ul>
-                        <li><a href="docs/technical-disclosure.pdf" target="_blank">技术交底书</a></li>
-                        <li><a href="docs/patent-application.pdf" target="_blank">专利申请</a></li>
-                        <li><a href="technical.html#code">示例代码</a></li>
-                        <li><a href="technical.html#hardware">硬件清单</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>联系我们</h4>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-user"></i> 发明人：游海洋</li>
-                        <li><i class="fas fa-envelope"></i> youhaiyang@example.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 湖北省武汉市</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 流式AI环境监控系统. 保留所有权利. 专利号：[待申请]</p>
-                <p>本网站内容仅为技术宣传，不构成投资建议。</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // 移动端导航菜单切换
-        document.addEventListener('DOMContentLoaded', function() {
-            const navToggle = document.querySelector('.nav-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (navToggle) {
-                navToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
+                <div class="card">
+                    <p>本研究采用混合研究方法，结合定量与定性分析，确保研究结果的科学性与可靠性：</p>
                     
-                    // 切换图标
-                    const icon = this.querySelector('i');
-                    if (navMenu.classList.contains('active')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                });
-            }
-            
-            // 平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    if (this.getAttribute('href').startsWith('#') && 
-                        this.getAttribute('href').length > 1) {
+                    <div class="methodology-grid">
+                        <div class="methodology-item">
+                            <div class="methodology-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <h4>大规模问卷调查</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">覆盖全国23省市，5200份有效样本</p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology-item">
+                            <div class="methodology-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div>
+                                <h4>深度访谈</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">与156位教育管理者、教师进行半结构化访谈</p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology-item">
+                            <div class="methodology-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div>
+                                <h4>案例跟踪研究</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">12所试点学校为期3年的纵向跟踪</p>
+                            </div>
+                        </div>
+                        
+                        <div class="methodology-item">
+                            <div class="methodology-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h4>国际比较分析</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">对比全球15个教育体系的改革经验</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-visualization" style="margin-top: 2rem;">
+                        <div class="data-item">
+                            <div class="data-number">23</div>
+                            <div class="data-label">省/市覆盖</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-number">5,200</div>
+                            <div class="data-label">有效问卷</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-number">156</div>
+                            <div class="data-label">深度访谈</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-number">3年</div>
+                            <div class="data-label">跟踪周期</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data-charts" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-chart-line section-icon"></i>
+                    <h3>关键数据可视化</h3>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <div class="chart-title">学生创新能力评估对比（试点学校 vs 传统学校）</div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: var(--primary-color);"></div>
+                                <span>试点学校</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: var(--accent-color);"></div>
+                                <span>传统学校</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #10b981;"></div>
+                                <span>全国平均</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-bar">
+                        <div class="bar-group">
+                            <div class="bar-value">78.5%</div>
+                            <div class="bar bar-1" style="height: 78.5%;"></div>
+                            <div class="bar-label">批判性思维</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-value">82.3%</div>
+                            <div class="bar bar-1" style="height: 82.3%;"></div>
+                            <div class="bar-label">解决问题能力</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-value">75.6%</div>
+                            <div class="bar bar-1" style="height: 75.6%;"></div>
+                            <div class="bar-label">团队协作</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-value">48.2%</div>
+                            <div class="bar bar-2" style="height: 48.2%;"></div>
+                            <div class="bar-label">批判性思维</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-value">52.7%</div>
+                            <div class="bar bar-2" style="height: 52.7%;"></div>
+                            <div class="bar-label">解决问题能力</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-value">46.8%</div>
+                            <div class="bar bar-2" style="height: 46.8%;"></div>
+                            <div class="bar-label">团队协作</div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+                        数据来源：2023年全国中学生创新能力评估报告（N=3200）
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <div class="chart-title">教师专业发展满意度调研结果（2020-2023）</div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary-color);">64%</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">2020年满意度</div>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <div style="font-size: 3.5rem; font-weight: 700; color: var(--accent-color);">89%</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">2023年满意度</div>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; font-weight: 700; color: #10b981;">+25%</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">提升幅度</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(90deg, rgba(26, 86, 219, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%); padding: 1.5rem; border-radius: 8px;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <i class="fas fa-chart-line" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+                            <div>
+                                <h4 style="margin: 0 0 0.5rem 0;">趋势分析</h4>
+                                <p style="margin: 0; color: var(--text-secondary);">教师专业发展满意度连续三年显著提升，表明改革措施有效提升了教师职业认同感与专业能力。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cases" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    <h3>成功案例与实践</h3>
+                </div>
+                <div class="case-grid">
+                    <div class="card">
+                        <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                            <div style="font-size: 2.5rem; color: var(--accent-color);">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div>
+                                <h4>北京市第二中学创新人才培养模式</h4>
+                                <p style="color: var(--text-secondary); margin: 0.5rem 0;">
+                                    <i class="fas fa-map-marker-alt"></i> 北京市 | 2019-2022
+                                </p>
+                                <p>通过引入项目式学习(PBL)和导师制，重构高中课程体系，培养创新型人才。</p>
+                                <div style="background: rgba(26, 86, 219, 0.08); padding: 0.8rem; border-radius: 8px; margin: 1rem 0;">
+                                    <p style="margin: 0; color: var(--primary-color); font-weight: 500;">
+                                        <strong>核心成效：</strong>学生创新能力提升42%，高校自主招生通过率提高35%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                            <div style="font-size: 2.5rem; color: var(--accent-color);">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4>乡村教师专业发展支持体系</h4>
+                                <p style="color: var(--text-secondary); margin: 0.5rem 0;">
+                                    <i class="fas fa-map-marker-alt"></i> 云南省 | 2020-2023
+                                </p>
+                                <p>构建线上线下结合的乡村教师培训体系，提升偏远地区教育质量。</p>
+                                <div style="background: rgba(26, 86, 219, 0.08); padding: 0.8rem; border-radius: 8px; margin: 1rem 0;">
+                                    <p style="margin: 0; color: var(--primary-color); font-weight: 500;">
+                                        <strong>核心成效：</strong>覆盖教师1200人，教学满意度提升58%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                            <div style="font-size: 2.5rem; color: var(--accent-color);">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <h4>职业教育产教融合平台建设</h4>
+                                <p style="color: var(--text-secondary); margin: 0.5rem 0;">
+                                    <i class="fas fa-map-marker-alt"></i> 浙江省 | 2021-2024
+                                </p>
+                                <p>搭建校企合作平台，实现职业教育与产业需求精准对接。</p>
+                                <div style="background: rgba(26, 86, 219, 0.08); padding: 0.8rem; border-radius: 8px; margin: 1rem 0;">
+                                    <p style="margin: 0; color: var(--primary-color); font-weight: 500;">
+                                        <strong>核心成效：</strong>毕业生就业率98%，对口就业率85%
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-database section-icon"></i>
+                    <h3>数据报告与研究成果</h3>
+                </div>
+                <div class="card">
+                    <p>基于五年追踪研究，课题组已完成以下核心研究报告：</p>
+                    
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; border-left: 4px solid var(--accent-color);">
+                        <div style="font-size: 2.5rem; color: var(--accent-color); padding: 1rem; background: rgba(245, 158, 11, 0.1); border-radius: 12px;">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <h4 style="color: var(--primary-color); margin-bottom: 0.75rem;">《调研核心数据摘要与初步发现》</h4>
+                            <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">完整数据报告包含：高中毕业生去向趋势、学生心理健康数据、职业教育就业分析、地区资源分布及国内外改革案例研究。</p>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <a href="data-dashboard.html" class="btn btn-primary" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> 浏览交互式报告
+                                </a>
+                                <a href="data-dashboard.html" class="btn btn-secondary">
+                                    <i class="fas fa-download"></i> 下载PDF版本
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: var(--text-primary); margin-bottom: 1rem;">主要研究发现摘要</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div style="padding: 1rem; background: rgba(26, 86, 219, 0.05); border-radius: 8px;">
+                                <div style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color);">1. 课程改革成效显著</div>
+                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">试点学校学生综合素养提升35%-42%</p>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(26, 86, 219, 0.05); border-radius: 8px;">
+                                <div style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color);">2. 教师发展是关键</div>
+                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">专业发展支持使教学满意度提升58%</p>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(26, 86, 219, 0.05); border-radius: 8px;">
+                                <div style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color);">3. 地区差异仍明显</div>
+                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">教育资源东西部差异系数为0.42</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 相关项目链接区域 -->
+            <section id="related-sites" class="content-section" style="margin-top: 3rem;">
+                <div class="section-header">
+                    <i class="fas fa-link section-icon"></i>
+                    <h3>相关研究平台与项目推荐</h3>
+                </div>
+                <div class="card">
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        以下为课题组相关研究平台与个人项目，涵盖教育技术、艺术创作、游戏开发、理论物理等多个领域：
+                    </p>
+                    
+                    <div class="sites-grid">
+                        <a href="https://yohayi.github.io/-history/" target="_blank" class="site-link">
+                            <i class="fas fa-code" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                            <div>
+                                <div style="font-weight: 600;">信技化生-技术交流网站</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">技术开发与跨学科交流</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://yohayi.github.io/jinghongzhai--/" target="_blank" class="site-link">
+                            <i class="fas fa-paint-brush" style="color: var(--accent-color); font-size: 1.2rem;"></i>
+                            <div>
+                                <div style="font-weight: 600;">"惊鸿斋"官方网站</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">艺术创作与设计展示</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://yohayi.github.io/my-personal-edu-website/" target="_blank" class="site-link">
+                            <i class="fas fa-school" style="color: #10b981; font-size: 1.2rem;"></i>
+                            <div>
+                                <div style="font-weight: 600;">杭州市教育总结</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">地方教育实践经验分享</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://yohayi.github.io/2026--/index.html" target="_blank" class="site-link">
+                            <i class="fas fa-brain" style="color: #8b5cf6; font-size: 1.2rem;"></i>
+                            <div>
+                                <div style="font-weight: 600;">教育数据与AI监控平台</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">流式AI教育数据分析</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://yohayi.github.io/geometry-string-map/" target="_blank" class="site-link">
+                            <i class="fas fa-atom" style="color: #ef4444; font-size: 1.2rem;"></i>
+                            <div>
+                                <div style="font-weight: 600;">几何弦理论交流网站</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">理论物理课后交流平台</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://yohayi.github.io/BDCG---/" target="_blank" class="site-link">
+                            <i class="fas fa-gamepad" style="color: #f59e0b; font-size: 1.2rem;"></i>
+                            <div>
+                                <div style="font-weight: 600;">BDCG游戏技术网站</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">游戏开发与美术素材</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://yohayi.github.io/yohayi-/" target="_blank" class="site-link">
+                            <i class="fas fa-user" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                            <div>
+                                <div style="font-weight: 600;">游海洋个人网站</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">个人作品与项目集</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://yohayi.github.io/-AI-/" target="_blank" class="site-link">
+                            <i class="fas fa-robot" style="color: #06b6d4; font-size: 1.2rem;"></i>
+                            <div>
+                                <div style="font-weight: 600;">流式AI技术平台</div>
+                                <div style="font-size: 0.85rem; color: var(--text-secondary);">AI技术开发与应用</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-envelope section-icon"></i>
+                    <h3>联系我们</h3>
+                </div>
+                <div class="card">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <h4>课题组负责人</h4>
+                                <p>游海洋 学者</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>电子邮箱</h4>
+                                <p><a href="mailto:youhaiyang@stu.hbnu.edu.cn">youhaiyang@stu.hbnu.edu.cn</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <h4>相关研究平台</h4>
+                                <p><a href="https://yohayi.github.io/geometry-string-map/" target="_blank">https://yohayi.github.io/geometry-string-map/</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>知行教育研究课题组</span>
+                </div>
+                <div class="footer-info">
+                    <p>© 2025 教育改革与创新研究中心 保留所有权利</p>
+                    <p class="footer-links">
+                        <a href="#privacy">隐私政策</a> | 
+                        <a href="#terms">使用条款</a> | 
+                        <a href="#accessibility">无障碍声明</a>
+                    </p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/yohayi" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:youhaiyang@stu.hbnu.edu.cn" aria-label="电子邮件"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 主页专用交互脚本 -->
+    <script src="script.js"></script>
+    
+    <!-- 数据可视化交互脚本 -->
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动导航
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
                         e.preventDefault();
-                        const target = document.querySelector(this.getAttribute('href'));
-                        if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
                             });
+                            
+                            // 更新活动导航项
+                            navLinks.forEach(link => link.classList.remove('active'));
+                            this.classList.add('active');
                         }
                     }
                 });
             });
             
-            // 添加动画效果
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
+            // 滚动时更新活动导航项
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('.content-section');
+                const navHeight = document.querySelector('nav').offsetHeight;
+                
+                let currentSectionId = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - navHeight - 100;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        currentSectionId = '#' + section.getAttribute('id');
                     }
                 });
-            }, observerOptions);
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            });
             
-            // 观察需要动画的元素
-            document.querySelectorAll('.feature-card, .app-card').forEach(el => {
-                observer.observe(el);
+            // 数据图表动画效果
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                const originalHeight = bar.style.height;
+                bar.style.height = '0%';
+                
+                setTimeout(() => {
+                    bar.style.height = originalHeight;
+                }, 300);
+            });
+            
+            // 相关网站链接悬停效果增强
+            const siteLinks = document.querySelectorAll('.site-link');
+            siteLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('i');
+                    icon.style.transform = 'scale(1.2)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('i');
+                    icon.style.transform = 'scale(1)';
+                });
             });
         });
     </script>
