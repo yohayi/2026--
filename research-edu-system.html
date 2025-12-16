@@ -1,24 +1,404 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><title>教育制度设计</title></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教育制度设计研究 | 游海洋思想体系</title>
+    
+    <!-- 使用与主页面相同的样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 复制主页面样式 */
+        :root {
+            --primary-color: #1a56db;
+            --primary-dark: #1e429f;
+            --accent-color: #f59e0b;
+            --accent-dark: #d97706;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        .logo-text {
+            line-height: 1.2;
+        }
+        
+        .org-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .org-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* 研究内容样式 */
+        .research-content {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        .research-hero {
+            background: linear-gradient(135deg, rgba(26, 86, 219, 0.1), rgba(245, 158, 11, 0.1));
+            border-radius: var(--border-radius);
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .research-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        .research-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        .research-details {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .research-details h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+        }
+        
+        .research-details h3:first-child {
+            margin-top: 0;
+        }
+        
+        .research-details ul, .research-details ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .research-details li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .research-details p {
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-box {
+            background: rgba(26, 86, 219, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* 页脚 */
+        .footer {
+            background-color: var(--text-primary);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .footer-info {
+            text-align: center;
+        }
+        
+        .footer-info p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-social a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .research-details {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
 <body>
-    <main>
-        <h2>教育制度设计 - 详细研究内容</h2>
-        <p><strong>核心目标：</strong>构建公平、高效、有韧性的现代化教育治理体系。</p>
-        
-        <h3>🔬 主要研究方向</h3>
-        <ul>
-            <li><strong>政策仿真与评估</strong>：利用系统动力学模型，对教育政策进行长期效果模拟与预评估。</li>
-            <li><strong>资源配置优化</strong>：研究教师、经费、设施等教育资源在区域与校际间的科学配置模型。</li>
-            <li><strong>治理模式创新</strong>：探索"政府-学校-社会"多元共治的现代教育治理模式。</li>
-        </ul>
-        
-        <h3>📊 近期项目成果</h3>
-        <p>我们完成了《省级义务教育优质均衡发展指标体系》的构建，并在3个省份开展试点评估。初步数据显示，通过优化资源配置和治理结构，试点区域的教育公平指数提升了15%。</p>
-        
-        <div class="back-hint">
-            <p><i class="fas fa-info-circle"></i> 此页面为动态加载内容示例。实际应用中可展示更详细的研究报告、数据图表等。</p>
-        </div>
-    </main>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1.5rem;">
+                        <i class="fas fa-fire logo-icon"></i>
+                        <div class="logo-text">
+                            <h1 class="org-name">知行教育研究课题组</h1>
+                            <h2 class="org-subtitle">教育制度设计研究</h2>
+                        </div>
+                    </a>
+                </div>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回主平台
+                </a>
+            </div>
+        </header>
+
+        <main class="research-content">
+            <div class="research-hero">
+                <h2 class="research-title">教育制度设计研究</h2>
+                <div class="divider"></div>
+                <p class="research-subtitle">"离明照睽"思想体系中"制度革新"维度的核心体现</p>
+            </div>
+            
+            <div class="research-details">
+                <h3>研究概述</h3>
+                <p>教育制度设计研究是"离明照睽"思想体系在教育领域的核心应用之一。本研究基于系统论与复杂性科学，结合中国传统"离为火"的文明彰显思想，探索适应新时代的教育治理体系与制度创新路径。</p>
+                
+                <div class="highlight-box">
+                    <h4>思想体系定位</h4>
+                    <p>本研究是"离明照睽"思想体系中"父母卯木"（原创思想内核）在教育制度领域的具体展开，体现了思想体系"以理论指导实践，以实践验证理论"的核心逻辑。</p>
+                </div>
+                
+                <h3>研究目标</h3>
+                <ol>
+                    <li>构建适应新时代的教育制度理论框架</li>
+                    <li>探索教育制度创新的实践路径与方法</li>
+                    <li>验证"离明照睽"思想体系在教育制度领域的应用价值</li>
+                    <li>为教育政策制定提供理论依据与实践参考</li>
+                </ol>
+                
+                <h3>研究方法</h3>
+                <p>本研究采用混合研究方法，结合定量与定性分析：</p>
+                <ul>
+                    <li><strong>文献研究：</strong>系统梳理国内外教育制度研究文献</li>
+                    <li><strong>比较研究：</strong>对比分析全球15个教育体系的制度设计</li>
+                    <li><strong>案例研究：</strong>深入跟踪12所试点学校的制度创新实践</li>
+                    <li><strong>行动研究：</strong>在23省市开展教育制度创新试点</li>
+                </ul>
+                
+                <h3>研究成果</h3>
+                <p>经过五年研究，取得以下主要成果：</p>
+                <ul>
+                    <li>提出"教育制度生态系统"理论框架</li>
+                    <li>开发"教育制度创新评估指标体系"</li>
+                    <li>完成《中国教育制度创新白皮书（2024）》</li>
+                    <li>在12所试点学校验证制度创新方案的有效性</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h4>思想整合验证</h4>
+                    <p>本研究成果验证了"离明照睽"思想体系中"丑土化卯木"的整合逻辑：教育制度设计实践（丑土）成功转化为思想体系（卯木）在教育领域的具体论证，证明了思想体系的实践价值与理论深度。</p>
+                </div>
+                
+                <h3>未来方向</h3>
+                <p>基于现有研究成果，未来研究将聚焦于：</p>
+                <ol>
+                    <li>教育制度与数字技术的深度融合</li>
+                    <li>跨区域教育制度协同创新机制</li>
+                    <li>"离明照睽"思想体系在其他制度领域的扩展应用</li>
+                </ol>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i> 返回主平台
+                    </a>
+                    <a href="research-interdisciplinary.html" class="btn" style="background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color);">
+                        <i class="fas fa-arrow-right"></i> 下一研究：跨学科课程开发
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-fire"></i>
+                    <span>"离明照睽"思想体系</span>
+                </div>
+                <div class="footer-info">
+                    <p>© 2025 游海洋思想体系整合平台 保留所有权利</p>
+                    <p>教育制度设计研究 | 思想体系实践路径之一</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/yohayi" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:youhaiyang@stu.hbnu.edu.cn" aria-label="电子邮件"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加简单的交互效果
+            const highlightBoxes = document.querySelectorAll('.highlight-box');
+            highlightBoxes.forEach(box => {
+                box.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                box.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
