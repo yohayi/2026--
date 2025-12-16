@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教育数据分析研究 | 游海洋思想体系</title>
+    
+    <!-- 使用与主页面相同的样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 复制主页面样式 */
+        :root {
+            --primary-color: #1a56db;
+            --primary-dark: #1e429f;
+            --accent-color: #f59e0b;
+            --accent-dark: #d97706;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+        
+        .logo-text {
+            line-height: 1.2;
+        }
+        
+        .org-name {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .org-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* 研究内容样式 */
+        .research-content {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        .research-hero {
+            background: linear-gradient(135deg, rgba(26, 86, 219, 0.1), rgba(245, 158, 11, 0.1));
+            border-radius: var(--border-radius);
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .research-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        .research-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        .research-details {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .research-details h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.5rem;
+        }
+        
+        .research-details h3:first-child {
+            margin-top: 0;
+        }
+        
+        .research-details ul, .research-details ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .research-details li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .research-details p {
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-box {
+            background: rgba(26, 86, 219, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .model-card {
+            background: rgba(26, 86, 219, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-top: 4px solid #10b981;
+        }
+        
+        .model-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+        
+        .data-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(26, 86, 219, 0.05);
+            border-radius: 8px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* 页脚 */
+        .footer {
+            background-color: var(--text-primary);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .footer-info {
+            text-align: center;
+        }
+        
+        .footer-info p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-social a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .research-details {
+                padding: 1.5rem;
+            }
+            
+            .model-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1.5rem;">
+                        <i class="fas fa-fire logo-icon"></i>
+                        <div class="logo-text">
+                            <h1 class="org-name">知行教育研究课题组</h1>
+                            <h2 class="org-subtitle">教育数据分析研究</h2>
+                        </div>
+                    </a>
+                </div>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回主平台
+                </a>
+            </div>
+        </header>
+
+        <main class="research-content">
+            <div class="research-hero">
+                <h2 class="research-title">教育数据分析研究</h2>
+                <div class="divider"></div>
+                <p class="research-subtitle">"离明照睽"思想体系中"数据驱动"维度的核心体现</p>
+            </div>
+            
+            <div class="research-details">
+                <h3>研究概述</h3>
+                <p>教育数据分析研究是"离明照睽"思想体系在方法维度的核心支撑。本研究基于大数据与人工智能技术，构建教育评估与预测模型，为教育决策提供科学依据，实现精准干预与个性化教育。</p>
+                
+                <div class="highlight-box">
+                    <h4>思想体系定位</h4>
+                    <p>本研究是"离明照睽"思想体系中"子孙丑土"（实践成果）与"官鬼亥水"（价值审视）的桥梁，通过数据验证思想体系的实践效果，回应官方的科学审视需求。</p>
+                </div>
+                
+                <h3>研究目标</h3>
+                <ol>
+                    <li>构建基于大数据的教育评估与预测模型</li>
+                    <li>开发教育数据智能分析平台</li>
+                    <li>验证数据驱动决策在教育改革中的有效性</li>
+                    <li>为"离明照睽"思想体系提供实证数据支持</li>
+                </ol>
+                
+                <h3>数据规模</h3>
+                <div class="data-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5,200</div>
+                        <div class="stat-label">有效问卷样本</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">合作院校数据</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number">3年</div>
+                        <div class="stat-label">追踪研究周期</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number">23</div>
+                        <div class="stat-label">省市数据覆盖</div>
+                    </div>
+                </div>
+                
+                <h3>核心模型</h3>
+                <div class="model-grid">
+                    <div class="model-card">
+                        <h4>学生发展预测模型</h4>
+                        <p>基于机器学习算法，预测学生学业发展轨迹，实现早期预警与精准干预，准确率达87%。</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h4>教育资源优化模型</h4>
+                        <p>运用运筹学与数据分析，优化教育资源分配，提升资源使用效率35%。</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h4>教学质量评估模型</h4>
+                        <p>多维度评估教学质量，为教师专业发展提供数据支持，覆盖12个评估维度。</p>
+                    </div>
+                </div>
+                
+                <h3>研究方法</h3>
+                <p>本研究采用大数据分析与实证研究相结合的方法：</p>
+                <ul>
+                    <li><strong>数据采集：</strong>采集5200份有效问卷、156所合作院校数据、12所试点学校3年追踪数据</li>
+                    <li><strong>数据分析：</strong>运用机器学习、数据挖掘、统计分析方法处理教育数据</li>
+                    <li><strong>模型构建：</strong>开发学生发展预测、教育资源优化、教学质量评估等模型</li>
+                    <li><strong>实证验证：</strong>在23省市开展模型验证与应用实践</li>
+                </ul>
+                
+                <h3>研究成果</h3>
+                <p>经过五年研究实践，取得以下主要成果：</p>
+                <ul>
+                    <li>开发完成"教育数据智能分析平台1.0"</li>
+                    <li>建立学生发展预测模型，预测准确率87%</li>
+                    <li>教育资源使用效率提升35%</li>
+                    <li>教师教学评估满意度从64%提升至89%</li>
+                    <li>发表SCI/SSCI论文6篇，核心期刊论文12篇</li>
+                    <li>获得教育部教育科学研究优秀成果奖</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h4>思想整合验证</h4>
+                    <p>本研究成果验证了"离明照睽"思想体系中"官鬼亥水化子孙丑土"的转化逻辑：通过数据分析回应官方（官鬼亥水）的审视需求，将审视压力转化为展示思想体系实践成果（子孙丑土）的契机，证明了思想体系的数据驱动能力与科学价值。</p>
+                </div>
+                
+                <h3>技术平台</h3>
+                <h4>教育数据与AI监控平台（流式AI技术）</h4>
+                <p>基于流式AI技术，构建实时教育数据分析与监控平台，实现教育数据的动态采集、实时分析与智能预警。</p>
+                <ul>
+                    <li><strong>技术特点：</strong>支持流式数据处理，实时分析教育数据变化</li>
+                    <li><strong>应用范围：</strong>覆盖学生学习行为、教师教学行为、教育资源使用等多维度数据</li>
+                    <li><strong>实际效果：</strong>实现教育问题的早期预警，干预时效性提升60%</li>
+                    <li><strong>访问链接：</strong><a href="https://yohayi.github.io/2026--/index.html" target="_blank">教育数据与AI监控平台</a></li>
+                </ul>
+                
+                <h3>未来方向</h3>
+                <p>基于现有研究成果，未来研究将聚焦于：</p>
+                <ol>
+                    <li>基于"几何弦理论"的教育数据建模方法创新</li>
+                    <li>教育大数据的隐私保护与伦理规范研究</li>
+                    <li>跨平台教育数据整合与标准化</li>
+                    <li>"离明照睽"思想体系在数据科学领域的深化应用</li>
+                </ol>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i> 返回主平台
+                    </a>
+                    <a href="research-interdisciplinary.html" class="btn" style="background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color);">
+                        <i class="fas fa-arrow-left"></i> 上一研究：跨学科课程开发
+                    </a>
+                    <a href="data-dashboard.html" class="btn btn-primary">
+                        <i class="fas fa-chart-bar"></i> 查看数据报告
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-fire"></i>
+                    <span>"离明照睽"思想体系</span>
+                </div>
+                <div class="footer-info">
+                    <p>© 2025 游海洋思想体系整合平台 保留所有权利</p>
+                    <p>教育数据分析研究 | 思想体系实践路径之三</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/yohayi" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:youhaiyang@stu.hbnu.edu.cn" aria-label="电子邮件"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加简单的交互效果
+            const highlightBoxes = document.querySelectorAll('.highlight-box');
+            highlightBoxes.forEach(box => {
+                box.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                box.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+            
+            // 模型卡片交互效果
+            const modelCards = document.querySelectorAll('.model-card');
+            modelCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // 统计数据动画
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(number => {
+                const originalText = number.textContent;
+                number.textContent = '0';
+                
+                setTimeout(() => {
+                    let count = 0;
+                    const target = parseInt(originalText.replace(/,/g, ''));
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        count += increment;
+                        if (count >= target) {
+                            count = target;
+                            clearInterval(timer);
+                        }
+                        number.textContent = Math.floor(count).toLocaleString();
+                    }, 20);
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
