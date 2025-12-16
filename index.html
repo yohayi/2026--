@@ -382,6 +382,25 @@
             z-index: 1;
         }
         
+        /* 创意标签 */
+        .creative-tag {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 1rem 0;
+            border: 1px dashed var(--accent-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .creative-tag i {
+            margin-right: 0.5rem;
+        }
+        
         /* 思想体系核心 */
         .thought-system {
             display: grid;
@@ -426,6 +445,17 @@
             color: var(--text-primary);
             margin-bottom: 1rem;
             font-family: 'Noto Serif SC', serif;
+        }
+        
+        .creative-metaphor {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(26, 86, 219, 0.05);
+            border-radius: 12px;
         }
         
         /* 实践路径网格 */
@@ -527,48 +557,27 @@
             margin-top: 2rem;
         }
         
-        /* 研究领域页面样式 */
-        .research-content {
-            max-width: 800px;
-            margin: 0 auto;
+        /* 创意说明框 */
+        .creative-note {
+            background: rgba(245, 158, 11, 0.08);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
         }
         
-        .research-hero {
-            background: linear-gradient(135deg, rgba(26, 86, 219, 0.1), rgba(245, 158, 11, 0.1));
-            border-radius: var(--border-radius);
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
+        .creative-note h4 {
+            color: var(--accent-dark);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .research-title {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-family: 'Noto Serif SC', serif;
-        }
-        
-        .research-details {
-            background: var(--bg-white);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-        
-        .research-details h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-family: 'Noto Serif SC', serif;
-        }
-        
-        .research-details ul {
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .research-details li {
-            margin-bottom: 0.5rem;
+        .creative-note p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
         /* 响应式调整 */
@@ -592,6 +601,10 @@
             
             .brand-subtitle {
                 font-size: 1.1rem;
+            }
+            
+            .path-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -635,9 +648,15 @@
                 <h2 class="brand-title">"离明照睽"思想体系</h2>
                 <div class="divider"></div>
                 <h3 class="brand-subtitle">以原创思想体系为内核，照亮并整合多领域的革新者与建设者</h3>
+                
+                <div class="creative-tag">
+                    <i class="fas fa-lightbulb"></i> 创意标签：以下六爻概念为隐喻框架，非传统命理应用
+                </div>
+                
                 <p class="brand-description">
-                    本平台是游海洋学者思想体系的集中呈现。基于"离为火"的文明彰显与"睽卦"的异中求同思想，我们致力于构建一个整合教育革新、理论物理、技术开发与艺术创作的思想体系。通过"以思想体系为柴薪，让实践成果为火焰"的品牌逻辑，我们将分散的七个网站与诸多项目整合为一个具有内在统一性的品牌整体。
+                    本平台是游海洋学者思想体系的集中呈现。基于"离为火"的文明彰显与"睽卦"的异中求同思想，我们致力于构建一个整合教育革新、理论物理、技术开发与艺术创作的思想体系。通过"以思想体系为内核，让实践成果为外显"的品牌逻辑，我们将分散的七个网站与诸多项目整合为一个具有内在统一性的品牌整体。
                 </p>
+                
                 <div class="btn btn-primary" onclick="scrollToSection('thought')">
                     <i class="fas fa-arrow-down"></i> 了解思想体系
                 </div>
@@ -649,11 +668,18 @@
                     <i class="fas fa-brain section-icon"></i>
                     <h3>思想体系三大支柱</h3>
                 </div>
+                
+                <div class="creative-note">
+                    <h4><i class="fas fa-palette"></i> 创意说明</h4>
+                    <p>以下使用《易经》六爻概念作为创意隐喻框架，旨在以传统文化符号构建现代思想体系的结构隐喻，非传统命理应用。符号体系仅作为创意表达工具，用于形象化描述思想体系的结构关系。</p>
+                </div>
+                
                 <div class="thought-system">
                     <div class="thought-card">
                         <i class="fas fa-seedling thought-icon"></i>
                         <h4>父母卯木：原创思想内核</h4>
-                        <p>基于教育改革理论与物理理论突破的原创思想体系，是品牌建设的核心"柴薪"，为所有实践提供理论支撑与方向指导。</p>
+                        <p>基于教育改革理论与物理理论突破的原创思想体系，是品牌建设的核心"内核"，为所有实践提供理论支撑与方向指导。</p>
+                        <div class="creative-metaphor">创意隐喻：思想之根</div>
                         <div class="btn btn-outline" style="margin-top: 1rem;" onclick="window.location.href='#research'">
                             探索教育理论
                         </div>
@@ -662,7 +688,8 @@
                     <div class="thought-card">
                         <i class="fas fa-project-diagram thought-icon"></i>
                         <h4>子孙丑土：实践成果矩阵</h4>
-                        <p>七大网站与跨领域项目是思想的外化成果，通过"丑土化卯木"的整合逻辑，使分散的实践回归统一的思想主张。</p>
+                        <p>七大网站与跨领域项目是思想的外化成果，通过"实践回归思想"的整合逻辑，使分散的实践回归统一的思想主张。</p>
+                        <div class="creative-metaphor">创意隐喻：实践之果</div>
                         <div class="btn btn-outline" style="margin-top: 1rem;" onclick="scrollToSection('paths')">
                             查看实践路径
                         </div>
@@ -671,7 +698,8 @@
                     <div class="thought-card">
                         <i class="fas fa-eye thought-icon"></i>
                         <h4>官鬼亥水：价值审视标准</h4>
-                        <p>以"思想高度"与"实践厚度"的双重标准回应官方审视，将评估压力转化为展示思想体系落地成果的契机。</p>
+                        <p>以"思想高度"与"实践厚度"的双重标准回应外界审视，将评估压力转化为展示思想体系落地成果的契机。</p>
+                        <div class="creative-metaphor">创意隐喻：价值之镜</div>
                         <div class="btn btn-outline" style="margin-top: 1rem;" onclick="scrollToSection('data')">
                             查看数据支撑
                         </div>
@@ -688,6 +716,11 @@
                 <p style="margin-bottom: 1.5rem; color: var(--text-secondary); max-width: 800px;">
                     以下七个实践平台是思想体系在不同领域的具体呈现，每个平台都承载着"离明照睽"的整合思想，证明思想体系的实际应用价值。
                 </p>
+                
+                <div class="creative-note">
+                    <h4><i class="fas fa-code-branch"></i> 路径说明</h4>
+                    <p>以下平台均为游海洋学者在不同领域的实践成果，通过"丑土化卯木"的创意隐喻（实践回归思想），将分散的平台整合到统一的思想体系之下，形成品牌合力。</p>
+                </div>
                 
                 <div class="path-grid">
                     <a href="https://yohayi.github.io/-history/" target="_blank" class="path-card">
@@ -782,7 +815,7 @@
                 <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(26, 86, 219, 0.05); border-radius: var(--border-radius);">
                     <h4 style="color: var(--primary-color); margin-bottom: 0.75rem;">思想整合逻辑说明</h4>
                     <p style="color: var(--text-secondary);">
-                        所有八个实践平台遵循"丑土化卯木"的整合逻辑：每个平台都是思想体系（卯木）在特定领域的具体实践（丑土），通过"化土归木"的过程，将分散的实践成果统一到核心思想主张之下，形成具有内在一致性的品牌整体。
+                        所有八个实践平台遵循"实践回归思想"的整合逻辑：每个平台都是思想体系在特定领域的具体实践，通过"化实践为思想论证"的过程，将分散的实践成果统一到核心思想主张之下，形成具有内在一致性的品牌整体。
                     </p>
                 </div>
             </section>
@@ -826,16 +859,9 @@
                     </div>
                 </div>
                 
-                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(245, 158, 11, 0.05); border-radius: var(--border-radius); border-left: 4px solid var(--accent-color);">
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <i class="fas fa-lightbulb" style="font-size: 1.5rem; color: var(--accent-color);"></i>
-                        <div>
-                            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">思想体系在教育研究中的体现</h4>
-                            <p style="color: var(--text-secondary);">
-                                三个教育研究方向共同构成了思想体系中"教育革新"维度的完整框架：制度设计提供结构性支撑，课程开发提供内容载体，数据分析提供科学依据，三者相互支撑，形成完整的教育革新体系。
-                            </p>
-                        </div>
-                    </div>
+                <div class="creative-note">
+                    <h4><i class="fas fa-university"></i> 学术定位</h4>
+                    <p>三个教育研究方向共同构成了思想体系中"教育革新"维度的完整框架：制度设计提供结构性支撑，课程开发提供内容载体，数据分析提供科学依据，三者相互支撑，形成完整的教育革新体系。所有研究均基于实证数据与科学方法。</p>
                 </div>
             </section>
 
@@ -883,6 +909,11 @@
                                 <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">多平台整合使思想体系接受度提升65%</p>
                             </div>
                         </div>
+                    </div>
+                    
+                    <div class="creative-note" style="margin-top: 2rem;">
+                        <h4><i class="fas fa-chart-line"></i> 数据说明</h4>
+                        <p>所有数据均来自五年实证研究，采用科学的研究方法与统计分析方法，确保数据的可靠性与有效性。研究过程遵循学术伦理规范，数据采集获得参与者知情同意。</p>
                     </div>
                     
                     <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(26, 86, 219, 0.08); border-radius: 12px;">
@@ -942,6 +973,11 @@
                             </p>
                         </div>
                     </div>
+                    
+                    <div class="creative-note" style="margin-top: 1.5rem;">
+                        <h4><i class="fas fa-exclamation-circle"></i> 重要声明</h4>
+                        <p>本网站中使用的《易经》六爻概念仅为创意表达工具，旨在以传统文化符号构建现代思想体系的结构隐喻，非传统命理应用。本思想体系基于现代科学方法与实证研究，所有结论均有数据支撑。</p>
+                    </div>
                 </div>
             </section>
         </main>
@@ -958,6 +994,9 @@
                         <a href="#brand">品牌宣言</a> | 
                         <a href="#thought">思想体系</a> | 
                         <a href="#paths">实践路径</a>
+                    </p>
+                    <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem;">
+                        本网站内容为学术研究与创意表达，六爻概念仅作隐喻使用
                     </p>
                 </div>
                 <div class="footer-social">
@@ -1028,13 +1067,13 @@
             pathCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     const icon = this.querySelector('.path-icon');
-                    icon.style.transform = 'scale(1.1)';
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
                     icon.style.transition = 'transform 0.3s ease';
                 });
                 
                 card.addEventListener('mouseleave', function() {
                     const icon = this.querySelector('.path-icon');
-                    icon.style.transform = 'scale(1)';
+                    icon.style.transform = 'scale(1) rotate(0deg)';
                 });
             });
             
@@ -1043,13 +1082,13 @@
             thoughtCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     const icon = this.querySelector('.thought-icon');
-                    icon.style.transform = 'translateY(-5px)';
+                    icon.style.transform = 'translateY(-5px) scale(1.1)';
                     icon.style.transition = 'transform 0.3s ease';
                 });
                 
                 card.addEventListener('mouseleave', function() {
                     const icon = this.querySelector('.thought-icon');
-                    icon.style.transform = 'translateY(0)';
+                    icon.style.transform = 'translateY(0) scale(1)';
                 });
             });
             
@@ -1072,6 +1111,17 @@
                         number.textContent = Math.floor(count).toLocaleString();
                     }, 20);
                 }, 500);
+            });
+            
+            // 创意标签点击效果
+            const creativeTags = document.querySelectorAll('.creative-tag');
+            creativeTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.style.backgroundColor = 'rgba(245, 158, 11, 0.25)';
+                    setTimeout(() => {
+                        this.style.backgroundColor = 'rgba(245, 158, 11, 0.15)';
+                    }, 300);
+                });
             });
         });
     </script>
