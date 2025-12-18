@@ -40,7 +40,7 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 1rem;
         }
@@ -89,20 +89,22 @@
             font-weight: 400;
         }
         
-        .language-switch a {
+        .contact-info-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            font-size: 0.9rem;
+        }
+        
+        .contact-info-header a {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
             transition: var(--transition);
         }
         
-        .language-switch a.active {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .language-switch a:hover:not(.active) {
-            background-color: rgba(255, 255, 255, 0.1);
+        .contact-info-header a:hover {
+            opacity: 0.9;
+            text-decoration: underline;
         }
         
         /* 导航栏 */
@@ -242,7 +244,7 @@
         .footer-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             flex-wrap: wrap;
             gap: 2rem;
         }
@@ -253,15 +255,34 @@
             gap: 0.75rem;
             font-size: 1.2rem;
             font-weight: 600;
+            margin-bottom: 1rem;
         }
         
         .footer-info {
-            text-align: center;
+            flex: 1;
         }
         
         .footer-info p {
             margin-bottom: 0.5rem;
             opacity: 0.9;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .footer-contact a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+        
+        .footer-contact a:hover {
+            opacity: 1;
+            text-decoration: underline;
         }
         
         .footer-links a {
@@ -304,6 +325,10 @@
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
+            }
+            
+            .contact-info-header {
+                align-items: center;
             }
             
             .nav-links {
@@ -461,15 +486,15 @@
         /* 实践路径网格 */
         .path-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
         
         .path-card {
             display: flex;
-            align-items: flex-start;
-            gap: 1rem;
+            flex-direction: column;
+            height: 100%;
             padding: 1.5rem;
             background-color: var(--bg-white);
             border-radius: var(--border-radius);
@@ -486,6 +511,13 @@
             border-left-color: var(--primary-color);
         }
         
+        .path-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
         .path-icon {
             font-size: 1.5rem;
             color: var(--primary-color);
@@ -497,6 +529,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .path-content {
+            flex: 1;
         }
         
         .path-content h4 {
@@ -509,6 +546,18 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .path-url {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            word-break: break-all;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: rgba(26, 86, 219, 0.05);
+            border-radius: 6px;
+            font-family: monospace;
         }
         
         .path-tag {
@@ -519,7 +568,7 @@
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 500;
-            margin-top: 0.75rem;
+            margin-top: auto;
         }
         
         /* 数据可视化 */
@@ -587,6 +636,10 @@
                 grid-template-columns: 1fr;
             }
             
+            .path-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .data-visualization {
                 gap: 2rem;
             }
@@ -602,10 +655,96 @@
             .brand-subtitle {
                 font-size: 1.1rem;
             }
-            
-            .path-grid {
-                grid-template-columns: 1fr;
-            }
+        }
+        
+        /* 联系方式卡片 */
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(26, 86, 219, 0.05);
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-details h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-details p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-details a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 所有网站网格 */
+        .all-websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .website-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        
+        .website-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .website-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            background: rgba(26, 86, 219, 0.1);
+            padding: 0.75rem;
+            border-radius: 10px;
+            min-width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .website-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+        
+        .website-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
         }
     </style>
     
@@ -624,9 +763,9 @@
                         </div>
                     </a>
                 </div>
-                <div class="language-switch">
-                    <a href="index.html" class="active">中文</a>
-                    <a href="index_en.html">EN</a>
+                <div class="contact-info-header">
+                    <a href="mailto:3114228696@qq.com"><i class="fas fa-envelope"></i> 3114228696@qq.com</a>
+                    <a href="tel:13377886896"><i class="fas fa-phone"></i> 133-7788-6896</a>
                 </div>
             </div>
         </header>
@@ -636,8 +775,8 @@
                 <li><a href="#brand" class="active"><i class="fas fa-fire"></i> 品牌宣言</a></li>
                 <li><a href="#thought"><i class="fas fa-brain"></i> 思想体系</a></li>
                 <li><a href="#paths"><i class="fas fa-road"></i> 实践路径</a></li>
+                <li><a href="#websites"><i class="fas fa-globe"></i> 所有网站</a></li>
                 <li><a href="#research"><i class="fas fa-search"></i> 教育研究</a></li>
-                <li><a href="#data"><i class="fas fa-chart-bar"></i> 数据支撑</a></li>
                 <li><a href="#contact"><i class="fas fa-envelope"></i> 联系</a></li>
             </ul>
         </nav>
@@ -654,7 +793,7 @@
                 </div>
                 
                 <p class="brand-description">
-                    本平台是游海洋学者思想体系的集中呈现。基于"离为火"的文明彰显与"睽卦"的异中求同思想，我们致力于构建一个整合教育革新、理论物理、技术开发与艺术创作的思想体系。通过"以思想体系为内核，让实践成果为外显"的品牌逻辑，我们将分散的七个网站与诸多项目整合为一个具有内在统一性的品牌整体。
+                    本平台是游海洋学者思想体系的集中呈现。基于"离为火"的文明彰显与"睽卦"的异中求同思想，我们致力于构建一个整合教育革新、理论物理、技术开发与艺术创作的思想体系。通过"以思想体系为内核，让实践成果为外显"的品牌逻辑，我们将分散的十个网站与诸多项目整合为一个具有内在统一性的品牌整体。
                 </p>
                 
                 <div class="btn btn-primary" onclick="scrollToSection('thought')">
@@ -688,7 +827,7 @@
                     <div class="thought-card">
                         <i class="fas fa-project-diagram thought-icon"></i>
                         <h4>子孙丑土：实践成果矩阵</h4>
-                        <p>七大网站与跨领域项目是思想的外化成果，通过"实践回归思想"的整合逻辑，使分散的实践回归统一的思想主张。</p>
+                        <p>十大网站与跨领域项目是思想的外化成果，通过"实践回归思想"的整合逻辑，使分散的实践回归统一的思想主张。</p>
                         <div class="creative-metaphor">创意隐喻：实践之果</div>
                         <div class="btn btn-outline" style="margin-top: 1rem;" onclick="scrollToSection('paths')">
                             查看实践路径
@@ -700,8 +839,8 @@
                         <h4>官鬼亥水：价值审视标准</h4>
                         <p>以"思想高度"与"实践厚度"的双重标准回应外界审视，将评估压力转化为展示思想体系落地成果的契机。</p>
                         <div class="creative-metaphor">创意隐喻：价值之镜</div>
-                        <div class="btn btn-outline" style="margin-top: 1rem;" onclick="scrollToSection('data')">
-                            查看数据支撑
+                        <div class="btn btn-outline" style="margin-top: 1rem;" onclick="scrollToSection('websites')">
+                            查看所有网站
                         </div>
                     </div>
                 </div>
@@ -711,10 +850,10 @@
             <section id="paths" class="content-section">
                 <div class="section-header">
                     <i class="fas fa-road section-icon"></i>
-                    <h3>思想体系的实践路径</h3>
+                    <h3>核心实践路径</h3>
                 </div>
                 <p style="margin-bottom: 1.5rem; color: var(--text-secondary); max-width: 800px;">
-                    以下七个实践平台是思想体系在不同领域的具体呈现，每个平台都承载着"离明照睽"的整合思想，证明思想体系的实际应用价值。
+                    以下五个核心实践平台是思想体系在不同领域的具体呈现，每个平台都承载着"离明照睽"的整合思想，证明思想体系的实际应用价值。
                 </p>
                 
                 <div class="creative-note">
@@ -723,91 +862,186 @@
                 </div>
                 
                 <div class="path-grid">
-                    <a href="https://yohayi.github.io/-history/" target="_blank" class="path-card">
-                        <div class="path-icon">
-                            <i class="fas fa-code"></i>
+                    <a href="https://yohayi.github.io/geometry-string-map/" target="_blank" class="path-card">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-atom"></i>
+                            </div>
+                            <div class="path-content">
+                                <h4>几何弦理论平台</h4>
+                                <p>思想体系中的"理论物理"维度，展示物理理论突破成果，体现思想的理论深度与前沿性。</p>
+                                <div class="path-url">https://yohayi.github.io/geometry-string-map/</div>
+                            </div>
                         </div>
-                        <div class="path-content">
-                            <h4>信技化生技术平台</h4>
-                            <p>思想体系中的"技术整合"维度，展示跨学科技术开发与交流成果，体现思想在技术领域的应用。</p>
-                            <div class="path-tag">技术整合</div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://yohayi.github.io/jinghongzhai--/" target="_blank" class="path-card">
-                        <div class="path-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <div class="path-content">
-                            <h4>惊鸿斋艺术平台</h4>
-                            <p>思想体系中的"美学表达"维度，展示艺术创作与设计成果，体现思想在美学领域的应用。</p>
-                            <div class="path-tag">美学表达</div>
-                        </div>
+                        <div class="path-tag">理论物理 | 学术前沿</div>
                     </a>
                     
                     <a href="https://yohayi.github.io/my-personal-edu-website/" target="_blank" class="path-card">
-                        <div class="path-icon">
-                            <i class="fas fa-school"></i>
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="path-content">
+                                <h4>杭州教育实践平台</h4>
+                                <p>思想体系中的"地方实践"维度，展示地方教育实践经验，体现思想在区域教育中的应用与创新。</p>
+                                <div class="path-url">https://yohayi.github.io/my-personal-edu-website/</div>
+                            </div>
                         </div>
-                        <div class="path-content">
-                            <h4>杭州教育实践平台</h4>
-                            <p>思想体系中的"地方实践"维度，展示地方教育实践经验，体现思想在区域教育中的应用。</p>
-                            <div class="path-tag">地方实践</div>
-                        </div>
+                        <div class="path-tag">教育实践 | 区域创新</div>
                     </a>
                     
-                    <a href="https://yohayi.github.io/2026--/index.html" target="_blank" class="path-card">
-                        <div class="path-icon">
-                            <i class="fas fa-brain"></i>
+                    <a href="https://yohayi.github.io/jinghongzhai--/" target="_blank" class="path-card">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div class="path-content">
+                                <h4>惊鸿斋艺术平台</h4>
+                                <p>思想体系中的"美学表达"维度，展示艺术创作与设计成果，体现思想在美学与创意领域的应用。</p>
+                                <div class="path-url">https://yohayi.github.io/jinghongzhai--/</div>
+                            </div>
                         </div>
-                        <div class="path-content">
-                            <h4>教育AI监控平台</h4>
-                            <p>思想体系中的"智能分析"维度，展示流式AI在教育数据分析中的应用，体现思想的科技前沿性。</p>
-                            <div class="path-tag">智能分析</div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://yohayi.github.io/geometry-string-map/" target="_blank" class="path-card">
-                        <div class="path-icon">
-                            <i class="fas fa-atom"></i>
-                        </div>
-                        <div class="path-content">
-                            <h4>几何弦理论平台</h4>
-                            <p>思想体系中的"理论物理"维度，展示物理理论突破成果，体现思想的理论深度。</p>
-                            <div class="path-tag">理论物理</div>
-                        </div>
+                        <div class="path-tag">艺术创作 | 美学表达</div>
                     </a>
                     
                     <a href="https://yohayi.github.io/BDCG---/" target="_blank" class="path-card">
-                        <div class="path-icon">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="path-content">
+                                <h4>BDCG游戏技术平台</h4>
+                                <p>思想体系中的"创意产业"维度，展示游戏开发与美术素材成果，体现思想在数字创意产业的应用。</p>
+                                <div class="path-url">https://yohayi.github.io/BDCG---/</div>
+                            </div>
+                        </div>
+                        <div class="path-tag">游戏开发 | 数字创意</div>
+                    </a>
+                    
+                    <a href="https://yohayi.github.io/2025-2029global-/" target="_blank" class="path-card">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <div class="path-content">
+                                <h4>全球教育部平台</h4>
+                                <p>思想体系中的"全球视野"维度，展示全球教育发展趋势与政策研究，体现思想的国际视野与前瞻性。</p>
+                                <div class="path-url">https://yohayi.github.io/2025-2029global-/</div>
+                            </div>
+                        </div>
+                        <div class="path-tag">全球教育 | 国际视野</div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 所有网站 -->
+            <section id="websites" class="content-section">
+                <div class="section-header">
+                    <i class="fas fa-globe section-icon"></i>
+                    <h3>所有整合网站</h3>
+                </div>
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                    以下是思想体系的所有实践网站，涵盖了教育、技术、艺术、物理等多个领域，展示了思想体系的广泛适用性。
+                </p>
+                
+                <div class="all-websites-grid">
+                    <a href="https://yohayi.github.io/-history/" target="_blank" class="website-item">
+                        <div class="website-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="website-info">
+                            <h4>信技化生技术平台</h4>
+                            <p>跨学科技术开发与交流</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://yohayi.github.io/jinghongzhai--/" target="_blank" class="website-item">
+                        <div class="website-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="website-info">
+                            <h4>惊鸿斋艺术平台</h4>
+                            <p>艺术创作与设计展示</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://yohayi.github.io/my-personal-edu-website/" target="_blank" class="website-item">
+                        <div class="website-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="website-info">
+                            <h4>杭州市教育总结</h4>
+                            <p>地方教育实践经验分享</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://yohayi.github.io/2026--/index.html" target="_blank" class="website-item">
+                        <div class="website-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="website-info">
+                            <h4>教育数据与交流网站</h4>
+                            <p>教育数据分析与交流</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://yohayi.github.io/geometry-string-map/" target="_blank" class="website-item">
+                        <div class="website-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="website-info">
+                            <h4>几何弦理论平台</h4>
+                            <p>理论物理研究与交流</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://yohayi.github.io/BDCG---/" target="_blank" class="website-item">
+                        <div class="website-icon">
                             <i class="fas fa-gamepad"></i>
                         </div>
-                        <div class="path-content">
+                        <div class="website-info">
                             <h4>BDCG游戏技术平台</h4>
-                            <p>思想体系中的"创意产业"维度，展示游戏开发与美术素材成果，体现思想在创意产业的应用。</p>
-                            <div class="path-tag">创意产业</div>
+                            <p>游戏开发与美术素材</p>
                         </div>
                     </a>
                     
-                    <a href="https://yohayi.github.io/yohayi-/" target="_blank" class="path-card">
-                        <div class="path-icon">
+                    <a href="https://yohayi.github.io/yohayi-/" target="_blank" class="website-item">
+                        <div class="website-icon">
                             <i class="fas fa-user"></i>
                         </div>
-                        <div class="path-content">
-                            <h4>游海洋个人平台</h4>
-                            <p>思想体系的"个人整合"维度，展示个人作品与项目集，体现思想体系的个人品牌价值。</p>
-                            <div class="path-tag">个人品牌</div>
+                        <div class="website-info">
+                            <h4>游海洋个人网站</h4>
+                            <p>个人作品与项目整合</p>
                         </div>
                     </a>
                     
-                    <a href="https://yohayi.github.io/-AI-/" target="_blank" class="path-card">
-                        <div class="path-icon">
+                    <a href="https://yohayi.github.io/-AI-/" target="_blank" class="website-item">
+                        <div class="website-icon">
                             <i class="fas fa-robot"></i>
                         </div>
-                        <div class="path-content">
-                            <h4>流式AI技术平台</h4>
-                            <p>思想体系中的"前沿技术"维度，展示AI技术开发与应用成果，体现思想的技术前瞻性。</p>
-                            <div class="path-tag">前沿技术</div>
+                        <div class="website-info">
+                            <h4>流式AI监控平台</h4>
+                            <p>AI技术开发与应用</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://yohayi.github.io/2025-2029global-/" target="_blank" class="website-item">
+                        <div class="website-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="website-info">
+                            <h4>全球教育部平台</h4>
+                            <p>全球教育趋势与政策</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://yohayi.github.io/jinghongzai--2025-2029/" target="_blank" class="website-item">
+                        <div class="website-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="website-info">
+                            <h4>不被定义的美</h4>
+                            <p>美学创新与艺术哲学</p>
                         </div>
                     </a>
                 </div>
@@ -815,7 +1049,7 @@
                 <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(26, 86, 219, 0.05); border-radius: var(--border-radius);">
                     <h4 style="color: var(--primary-color); margin-bottom: 0.75rem;">思想整合逻辑说明</h4>
                     <p style="color: var(--text-secondary);">
-                        所有八个实践平台遵循"实践回归思想"的整合逻辑：每个平台都是思想体系在特定领域的具体实践，通过"化实践为思想论证"的过程，将分散的实践成果统一到核心思想主张之下，形成具有内在一致性的品牌整体。
+                        所有十个实践平台遵循"实践回归思想"的整合逻辑：每个平台都是思想体系在特定领域的具体实践，通过"化实践为思想论证"的过程，将分散的实践成果统一到核心思想主张之下，形成具有内在一致性的品牌整体。
                     </p>
                 </div>
             </section>
@@ -865,79 +1099,6 @@
                 </div>
             </section>
 
-            <!-- 数据支撑 -->
-            <section id="data" class="content-section">
-                <div class="section-header">
-                    <i class="fas fa-database section-icon"></i>
-                    <h3>数据支撑与研究成果</h3>
-                </div>
-                <div class="card">
-                    <p style="margin-bottom: 1.5rem;">基于五年追踪研究的思想体系验证数据：</p>
-                    
-                    <div class="data-visualization">
-                        <div class="data-item">
-                            <div class="data-number">23</div>
-                            <div class="data-label">省市覆盖</div>
-                        </div>
-                        <div class="data-item">
-                            <div class="data-number">5,200</div>
-                            <div class="data-label">有效问卷</div>
-                        </div>
-                        <div class="data-item">
-                            <div class="data-number">156</div>
-                            <div class="data-label">深度访谈</div>
-                        </div>
-                        <div class="data-item">
-                            <div class="data-number">3年</div>
-                            <div class="data-label">跟踪周期</div>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 2rem;">
-                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">思想体系的实证验证</h4>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                            <div style="padding: 1rem; background: rgba(26, 86, 219, 0.05); border-radius: 8px;">
-                                <div style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color);">理论验证</div>
-                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">教育制度创新理论在12所试点学校验证有效</p>
-                            </div>
-                            <div style="padding: 1rem; background: rgba(26, 86, 219, 0.05); border-radius: 8px;">
-                                <div style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color);">实践验证</div>
-                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">跨学科课程使学生创新能力提升42%</p>
-                            </div>
-                            <div style="padding: 1rem; background: rgba(26, 86, 219, 0.05); border-radius: 8px;">
-                                <div style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color);">整合验证</div>
-                                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">多平台整合使思想体系接受度提升65%</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="creative-note" style="margin-top: 2rem;">
-                        <h4><i class="fas fa-chart-line"></i> 数据说明</h4>
-                        <p>所有数据均来自五年实证研究，采用科学的研究方法与统计分析方法，确保数据的可靠性与有效性。研究过程遵循学术伦理规范，数据采集获得参与者知情同意。</p>
-                    </div>
-                    
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(26, 86, 219, 0.08); border-radius: 12px;">
-                        <div style="display: flex; align-items: center; gap: 1.5rem;">
-                            <div style="font-size: 2.5rem; color: var(--primary-color);">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                            <div style="flex: 1;">
-                                <h4 style="color: var(--primary-color); margin-bottom: 0.75rem;">《思想体系验证数据报告》</h4>
-                                <p style="color: var(--text-secondary); margin-bottom: 1.25rem;">完整数据报告包含：思想体系理论验证、多领域实践数据、整合效果评估及未来应用展望。</p>
-                                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                                    <a href="data-dashboard.html" class="btn btn-primary" target="_blank">
-                                        <i class="fas fa-external-link-alt"></i> 浏览交互式报告
-                                    </a>
-                                    <a href="data-dashboard.html" class="btn btn-secondary">
-                                        <i class="fas fa-download"></i> 下载PDF版本
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <!-- 联系部分 -->
             <section id="contact" class="content-section">
                 <div class="section-header">
@@ -945,12 +1106,12 @@
                     <h3>联系与合作</h3>
                 </div>
                 <div class="card">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                         <div>
                             <h4 style="color: var(--primary-color); margin-bottom: 1rem;">思想体系合作</h4>
                             <p style="color: var(--text-secondary); margin-bottom: 1rem;">欢迎对"离明照睽"思想体系感兴趣的研究机构、教育部门和企业进行合作。</p>
                             <div style="display: flex; gap: 1rem;">
-                                <a href="mailto:youhaiyang@stu.hbnu.edu.cn" class="btn btn-primary">
+                                <a href="mailto:3114228696@qq.com" class="btn btn-primary">
                                     <i class="fas fa-envelope"></i> 邮件联系
                                 </a>
                                 <a href="https://github.com/yohayi" class="btn btn-secondary" target="_blank">
@@ -974,6 +1135,18 @@
                         </div>
                     </div>
                     
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-address-card"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>直接联系方式</h4>
+                            <p><i class="fas fa-envelope"></i> 邮箱：<a href="mailto:3114228696@qq.com">3114228696@qq.com</a></p>
+                            <p><i class="fas fa-phone"></i> 电话：<a href="tel:13377886896">133-7788-6896</a></p>
+                            <p><i class="fas fa-globe"></i> 所有网站：<a href="#websites">查看上方完整列表</a></p>
+                        </div>
+                    </div>
+                    
                     <div class="creative-note" style="margin-top: 1.5rem;">
                         <h4><i class="fas fa-exclamation-circle"></i> 重要声明</h4>
                         <p>本网站中使用的《易经》六爻概念仅为创意表达工具，旨在以传统文化符号构建现代思想体系的结构隐喻，非传统命理应用。本思想体系基于现代科学方法与实证研究，所有结论均有数据支撑。</p>
@@ -984,24 +1157,30 @@
 
         <footer class="footer">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-fire"></i>
-                    <span>"离明照睽"思想体系</span>
-                </div>
                 <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-fire"></i>
+                        <span>"离明照睽"思想体系</span>
+                    </div>
                     <p>© 2025 游海洋思想体系整合平台 保留所有权利</p>
                     <p class="footer-links">
                         <a href="#brand">品牌宣言</a> | 
                         <a href="#thought">思想体系</a> | 
-                        <a href="#paths">实践路径</a>
+                        <a href="#websites">所有网站</a>
                     </p>
                     <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem;">
                         本网站内容为学术研究与创意表达，六爻概念仅作隐喻使用
                     </p>
                 </div>
+                <div class="footer-contact">
+                    <h4>联系方式</h4>
+                    <a href="mailto:3114228696@qq.com"><i class="fas fa-envelope"></i> 3114228696@qq.com</a>
+                    <a href="tel:13377886896"><i class="fas fa-phone"></i> 133-7788-6896</a>
+                    <a href="https://github.com/yohayi" target="_blank"><i class="fab fa-github"></i> GitHub: yohayi</a>
+                </div>
                 <div class="footer-social">
                     <a href="https://github.com/yohayi" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="mailto:youhaiyang@stu.hbnu.edu.cn" aria-label="电子邮件"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:3114228696@qq.com" aria-label="电子邮件"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </footer>
@@ -1083,7 +1262,7 @@
                 card.addEventListener('mouseenter', function() {
                     const icon = this.querySelector('.thought-icon');
                     icon.style.transform = 'translateY(-5px) scale(1.1)';
-                    icon.style.transition = 'transform 0.3s ease';
+                    icon.style.transform = 'transform 0.3s ease';
                 });
                 
                 card.addEventListener('mouseleave', function() {
@@ -1092,25 +1271,19 @@
                 });
             });
             
-            // 数据数字动画
-            const dataNumbers = document.querySelectorAll('.data-number');
-            dataNumbers.forEach(number => {
-                const originalText = number.textContent;
-                number.textContent = '0';
+            // 网站卡片悬停效果
+            const websiteItems = document.querySelectorAll('.website-item');
+            websiteItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.website-icon');
+                    icon.style.transform = 'scale(1.1)';
+                    icon.style.transition = 'transform 0.3s ease';
+                });
                 
-                setTimeout(() => {
-                    let count = 0;
-                    const target = parseInt(originalText.replace(/,/g, ''));
-                    const increment = target / 50;
-                    const timer = setInterval(() => {
-                        count += increment;
-                        if (count >= target) {
-                            count = target;
-                            clearInterval(timer);
-                        }
-                        number.textContent = Math.floor(count).toLocaleString();
-                    }, 20);
-                }, 500);
+                item.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.website-icon');
+                    icon.style.transform = 'scale(1)';
+                });
             });
             
             // 创意标签点击效果
